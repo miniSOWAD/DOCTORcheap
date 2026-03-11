@@ -1,0 +1,3 @@
+'use client';
+import useRoleGuard from '@/hooks/useRoleGuard';
+export default function SuperAdminDashboard() { useRoleGuard(['superadmin']); return <div className="text-2xl font-bold">Superadmin Dashboard</div>; }
