@@ -1,0 +1,1 @@
+export const buildRegex = (keyword?: string) => new RegExp(keyword || '', 'i');
