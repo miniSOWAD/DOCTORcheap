@@ -13,25 +13,30 @@ export class SuperAdminSeed implements OnModuleInit {
   ) {}
 
   async onModuleInit() {
-    const existing = await this.userModel.findOne({ role: Role.SUPERADMIN });
+    console.log('🔎 Checking SuperAdmin...');
 
-    if (existing) {
-      console.log('✅ SuperAdmin already exists.');
+    const exists = await this.userModel.findOne({ role: Role.SUPERADMIN });
+
+    if (exists) {
+      console.log('✅ SuperAdmin already exists');
       return;
     }
 
-    const password = await bcrypt.hash(process.env.SUPERADMIN_PASSWORD!, 10);
+    const password = await bcrypt.hash(
+      process.env.SUPERADMIN_PASSWORD || 'superadmin123',
+      10,
+    );
 
     await this.userModel.create({
-      name: process.env.SUPERADMIN_NAME,
-      email: process.env.SUPERADMIN_EMAIL,
-      phone: process.env.SUPERADMIN_PHONE,
-      userId: process.env.SUPERADMIN_USER_ID,
+      name: process.env.SUPERADMIN_NAME || 'System SuperAdmin',
+      email: process.env.SUPERADMIN_EMAIL || 'superadmin@doctorcheap.com',
+      phone: process.env.SUPERADMIN_PHONE || '9999999999',
+      userId: process.env.SUPERADMIN_USER_ID || 'SUPERADMIN001',
       password,
       role: Role.SUPERADMIN,
       approvalStatus: 'approved',
     });
 
-    console.log('SuperAdmin created successfully.');
+    console.log('🔥 SuperAdmin created successfully');
   }
 }

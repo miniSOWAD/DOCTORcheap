@@ -10,5 +10,6 @@ import { SuperAdminSeed } from './seed/superadmin.seed';
     ]),
   ],
   providers: [SuperAdminSeed],
+  exports: [MongooseModule],
 })
 export class DatabaseModule {}

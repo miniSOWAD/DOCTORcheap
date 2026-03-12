@@ -24,22 +24,23 @@ let SuperAdminSeed = class SuperAdminSeed {
         this.userModel = userModel;
     }
     async onModuleInit() {
-        const existing = await this.userModel.findOne({ role: role_enum_1.Role.SUPERADMIN });
-        if (existing) {
-            console.log('✅ SuperAdmin already exists.');
+        console.log('🔎 Checking SuperAdmin...');
+        const exists = await this.userModel.findOne({ role: role_enum_1.Role.SUPERADMIN });
+        if (exists) {
+            console.log('✅ SuperAdmin already exists');
             return;
         }
-        const password = await bcrypt.hash(process.env.SUPERADMIN_PASSWORD, 10);
+        const password = await bcrypt.hash(process.env.SUPERADMIN_PASSWORD || 'superadmin123', 10);
         await this.userModel.create({
-            name: process.env.SUPERADMIN_NAME,
-            email: process.env.SUPERADMIN_EMAIL,
-            phone: process.env.SUPERADMIN_PHONE,
-            userId: process.env.SUPERADMIN_USER_ID,
+            name: process.env.SUPERADMIN_NAME || 'System SuperAdmin',
+            email: process.env.SUPERADMIN_EMAIL || 'superadmin@doctorcheap.com',
+            phone: process.env.SUPERADMIN_PHONE || '9999999999',
+            userId: process.env.SUPERADMIN_USER_ID || 'SUPERADMIN001',
             password,
             role: role_enum_1.Role.SUPERADMIN,
             approvalStatus: 'approved',
         });
-        console.log('SuperAdmin created successfully.');
+        console.log('🔥 SuperAdmin created successfully');
     }
 };
 exports.SuperAdminSeed = SuperAdminSeed;

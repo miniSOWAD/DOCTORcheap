@@ -19,6 +19,7 @@ const nutrition_module_1 = require("./modules/nutrition/nutrition.module");
 const reports_module_1 = require("./modules/reports/reports.module");
 const search_module_1 = require("./modules/search/search.module");
 const uploads_module_1 = require("./modules/uploads/uploads.module");
+const database_module_1 = require("./database/database.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -28,6 +29,7 @@ exports.AppModule = AppModule = __decorate([
             config_1.ConfigModule.forRoot({ isGlobal: true }),
             mongoose_1.MongooseModule.forRoot(process.env.MONGODB_URI || ''),
             auth_module_1.AuthModule,
+            database_module_1.DatabaseModule,
             users_module_1.UsersModule,
             diseases_module_1.DiseasesModule,
             doctors_module_1.DoctorsModule,

@@ -22,6 +22,7 @@ exports.DatabaseModule = DatabaseModule = __decorate([
             ]),
         ],
         providers: [superadmin_seed_1.SuperAdminSeed],
+        exports: [mongoose_1.MongooseModule],
     })
 ], DatabaseModule);
 //# sourceMappingURL=database.module.js.map

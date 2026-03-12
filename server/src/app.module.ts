@@ -10,12 +10,15 @@ import { NutritionModule } from './modules/nutrition/nutrition.module';
 import { ReportsModule } from './modules/reports/reports.module';
 import { SearchModule } from './modules/search/search.module';
 import { UploadsModule } from './modules/uploads/uploads.module';
+import { DatabaseModule } from './database/database.module';
+import { SuperAdminModule } from './modules/superadmin/superadmin.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRoot(process.env.MONGODB_URI || ''),
     AuthModule,
+    DatabaseModule,
     UsersModule,
     DiseasesModule,
     DoctorsModule,
@@ -24,6 +27,7 @@ import { UploadsModule } from './modules/uploads/uploads.module';
     ReportsModule,
     SearchModule,
     UploadsModule,
+    SuperAdminModule,
   ],
 })
 export class AppModule {}
