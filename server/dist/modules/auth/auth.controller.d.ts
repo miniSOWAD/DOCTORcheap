@@ -24,8 +24,17 @@ export declare class AuthController {
             _id: import("mongoose").Types.ObjectId;
             name: string;
             email: string;
+            userId: string;
+            phone: string;
             role: import("../../shared/enums/role.enum").Role;
             profileImage: string;
+            approvalStatus: "approved";
         };
+    }>;
+    forgotPassword(body: {
+        identifier: string;
+        newPassword: string;
+    }): Promise<{
+        message: string;
     }>;
 }

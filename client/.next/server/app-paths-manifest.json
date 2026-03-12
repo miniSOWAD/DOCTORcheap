@@ -1,8 +1,6 @@
 {
-  "/(auth)/login/page": "app/(auth)/login/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/(auth)/register/page": "app/(auth)/register/page.js",
-  "/(auth)/forgot-password/page": "app/(auth)/forgot-password/page.js",
-  "/icon.png/route": "app/icon.png/route.js",
-  "/(commonLayout)/page": "app/(commonLayout)/page.js",
-  "/(commonLayout)/contact-us/page": "app/(commonLayout)/contact-us/page.js"
+  "/(auth)/login/page": "app/(auth)/login/page.js",
+  "/(commonLayout)/page": "app/(commonLayout)/page.js"
 }

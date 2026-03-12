@@ -3,6 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { User, UserDocument } from '@/database/schemas/user.schema';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
+import { Role } from '@/shared/enums/role.enum';
 export declare class AuthService {
     private readonly userModel;
     private readonly jwtService;
@@ -27,8 +28,17 @@ export declare class AuthService {
             _id: import("mongoose").Types.ObjectId;
             name: string;
             email: string;
-            role: import("../../shared/enums/role.enum").Role;
+            userId: string;
+            phone: string;
+            role: Role;
             profileImage: string;
+            approvalStatus: "approved";
         };
+    }>;
+    forgotPassword(dto: {
+        identifier: string;
+        newPassword: string;
+    }): Promise<{
+        message: string;
     }>;
 }
