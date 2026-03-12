@@ -110,13 +110,6 @@ export default function Sidebar() {
                         >
                           {item.label}
                         </p>
-                        <p
-                          className={`truncate text-xs ${
-                            active ? 'text-white/80' : 'text-slate-400'
-                          }`}
-                        >
-                          Open section
-                        </p>
                       </>
                     )}
                   </motion.div>
