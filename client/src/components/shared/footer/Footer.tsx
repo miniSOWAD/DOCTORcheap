@@ -163,7 +163,7 @@ export default function Footer() {
             </div>
 
             <p className="text-sm text-slate-400">
-              © 2026 Online Doctor Solution. All rights reserved.
+              © 2026 DOCTORcheap by miniSOWAD . All rights reserved.
             </p>
           </div>
 
