@@ -30,6 +30,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/(auth)/forgot-password/page.js"
+    ],
+    "/(commonLayout)/contact-us/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(commonLayout)/contact-us/page.js"
     ]
   }
 }
