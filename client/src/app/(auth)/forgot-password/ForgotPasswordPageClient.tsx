@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { KeyRound, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { forgotPassword } from '@/services/auth.service';
+import BackToHomeButton from '@/components/common/buttons/BackToHomeButton';
 
 export default function ForgotPasswordPageClient() {
   const router = useRouter();
@@ -31,6 +32,8 @@ export default function ForgotPasswordPageClient() {
 
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.18),transparent_25%),radial-gradient(circle_at_bottom_right,rgba(244,114,182,0.18),transparent_25%),linear-gradient(to_bottom_right,#ecfdf5,#ffffff,#fdf2f8)] px-6 py-8">
+      <BackToHomeButton />
+
       <div className="mx-auto flex min-h-[calc(100vh-4rem)] max-w-3xl items-center justify-center">
         <div className="w-full rounded-[32px] border border-white/30 bg-white/18 p-8 shadow-[0_20px_80px_rgba(16,185,129,0.14)] backdrop-blur-2xl md:p-10">
           <Link
@@ -47,14 +50,14 @@ export default function ForgotPasswordPageClient() {
             </div>
             <h1 className="text-3xl font-bold text-slate-900">Reset password</h1>
             <p className="mt-2 text-sm leading-7 text-slate-600">
-              Enter your email or ID and set a new password.
+              Enter your email, user ID, phone, or database ID and set a new password.
             </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <input
               type="text"
-              placeholder="Email or ID"
+              placeholder="Email / User ID / Phone / Database ID"
               value={form.identifier}
               onChange={(e) =>
                 setForm({ ...form, identifier: e.target.value })

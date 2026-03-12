@@ -10,9 +10,13 @@ export const loginUser = async (payload: {
 
 export const registerUser = async (payload: {
   name: string;
-  email: string;
+  userId: string;
+  email?: string;
+  phone: string;
   password: string;
   role: string;
+  nidImage?: string;
+  licenseImage?: string;
 }) => {
   const { data } = await api.post('/auth/register', payload);
   return data;

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import LoginForm from '@/components/common/forms/LoginForm';
+import BackToHomeButton from '@/components/common/buttons/BackToHomeButton';
 
 export const metadata: Metadata = {
   title: 'Login',
@@ -9,6 +10,8 @@ export const metadata: Metadata = {
 export default function LoginPage() {
   return (
     <div className="min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.18),transparent_25%),radial-gradient(circle_at_bottom_right,rgba(244,114,182,0.18),transparent_25%),linear-gradient(to_bottom_right,#ecfdf5,#ffffff,#fdf2f8)] px-6 py-8">
+      <BackToHomeButton />
+
       <div className="mx-auto grid min-h-[calc(100vh-4rem)] max-w-7xl items-center gap-8 lg:grid-cols-2">
         <div className="relative hidden h-[720px] overflow-hidden rounded-[36px] border border-white/30 shadow-[0_30px_120px_rgba(16,185,129,0.18)] lg:block">
           <Image
@@ -35,7 +38,7 @@ export default function LoginPage() {
                   faster support.
                 </h2>
                 <p className="mt-4 max-w-xl text-sm leading-7 text-white/85">
-                  A modern platform for doctors, medicines, nutrition, disease guidance,
+                  A modern platform for doctors, medicines, nutrition, disease guidance
                   and digital medical report access.
                 </p>
               </div>

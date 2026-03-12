@@ -4,13 +4,21 @@ import { Role } from '@/shared/enums/role.enum';
 
 export type UserDocument = HydratedDocument<User>;
 
+export type ApprovalStatus = 'approved' | 'pending' | 'rejected';
+
 @Schema({ timestamps: true })
 export class User {
   @Prop({ required: true })
   name: string;
 
+  @Prop({ required: false, unique: true, sparse: true })
+  email?: string;
+
   @Prop({ required: true, unique: true })
-  email: string;
+  userId: string;
+
+  @Prop({ required: true, unique: true })
+  phone: string;
 
   @Prop({ required: true })
   password: string;
@@ -20,6 +28,19 @@ export class User {
 
   @Prop()
   profileImage?: string;
+
+  @Prop()
+  nidImage?: string;
+
+  @Prop()
+  licenseImage?: string;
+
+  @Prop({
+    type: String,
+    enum: ['approved', 'pending', 'rejected'],
+    default: 'approved',
+  })
+  approvalStatus: ApprovalStatus;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
