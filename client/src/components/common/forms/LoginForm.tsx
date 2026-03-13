@@ -20,19 +20,34 @@ export default function LoginForm() {
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      setLoading(true);
-      const data = await loginUser(form);
-      login(data.accessToken, data.user);
-      router.push('/dashboard');
-    } catch (error: any) {
-      alert(error?.response?.data?.message || 'Login failed');
-    } finally {
-      setLoading(false);
+  try {
+    setLoading(true);
+    const data = await loginUser(form);
+    login(data.accessToken, data.user);
+
+    const role = data.user?.role;
+
+    if (role === 'superadmin') {
+      router.push('/dashboard/superadmin');
+    } else if (role === 'admin') {
+      router.push('/dashboard/admin');
+    } else if (role === 'doctor') {
+      router.push('/dashboard/doctor');
+    } else if (role === 'pharmacist') {
+      router.push('/dashboard/pharmacist');
+    } else if (role === 'seller') {
+      router.push('/dashboard/seller');
+    } else {
+      router.push('/dashboard/user');
     }
-  };
+  } catch (error: any) {
+    alert(error?.response?.data?.message || 'Login failed');
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <motion.div

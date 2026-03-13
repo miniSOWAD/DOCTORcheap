@@ -1,4 +1,4 @@
-import { LayoutDashboard, Users, FileText, Stethoscope, Pill, Apple, ShieldAlert } from 'lucide-react';
+import { LayoutDashboard, Users, FileText, ShieldCheck,Stethoscope, Pill, Apple, ShieldAlert } from 'lucide-react';
 
 export const dashboardNavItems = [
   { label: 'Overview', href: '/dashboard', icon: LayoutDashboard },
@@ -8,4 +8,5 @@ export const dashboardNavItems = [
   { label: 'Medicines', href: '/dashboard/medicines', icon: Pill },
   { label: 'Nutrition', href: '/dashboard/nutrition', icon: Apple },
   { label: 'Reports', href: '/dashboard/reports', icon: ShieldAlert },
+  { label: 'SuperAdmin', href: '/dashboard/superadmin', icon: ShieldCheck },
 ];

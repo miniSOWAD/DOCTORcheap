@@ -20,6 +20,7 @@ const reports_module_1 = require("./modules/reports/reports.module");
 const search_module_1 = require("./modules/search/search.module");
 const uploads_module_1 = require("./modules/uploads/uploads.module");
 const database_module_1 = require("./database/database.module");
+const superadmin_module_1 = require("./modules/superadmin/superadmin.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -38,6 +39,7 @@ exports.AppModule = AppModule = __decorate([
             reports_module_1.ReportsModule,
             search_module_1.SearchModule,
             uploads_module_1.UploadsModule,
+            superadmin_module_1.SuperAdminModule,
         ],
     })
 ], AppModule);
