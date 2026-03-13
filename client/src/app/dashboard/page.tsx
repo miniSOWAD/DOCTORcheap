@@ -3,12 +3,24 @@
 import { useEffect, useState } from 'react';
 import DashboardHero from '@/components/common/sections/DashboardHero';
 import useRoleGuard from '@/hooks/useRoleGuard';
-import { getUsers } from '@/services/user.service';
-import { getDoctors } from '@/services/doctor.service';
+import { getSystemStats, getAllUsersFromSuperadmin } from '@/services/superadmin.service';
 import { getDiseases } from '@/services/disease.service';
 import { getMedicines } from '@/services/medicine.service';
 import { getNutrition } from '@/services/nutrition.service';
 import { getReports } from '@/services/report.service';
+
+type Stats = {
+  totalUsers: number;
+  doctors: number;
+  pharmacists: number;
+  sellers: number;
+  admins: number;
+  pendingUsers: number;
+  diseases: number;
+  medicines: number;
+  nutrition: number;
+  reports: number;
+};
 
 export default function DashboardHome() {
   const { isReady, user } = useRoleGuard([
@@ -20,50 +32,67 @@ export default function DashboardHome() {
     'user',
   ]);
 
-  const [stats, setStats] = useState({
-    users: 0,
+  const [stats, setStats] = useState<Stats>({
+    totalUsers: 0,
     doctors: 0,
+    pharmacists: 0,
+    sellers: 0,
+    admins: 0,
+    pendingUsers: 0,
     diseases: 0,
     medicines: 0,
     nutrition: 0,
     reports: 0,
   });
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     if (!isReady || !user) return;
 
     const loadStats = async () => {
       try {
-        const [
-          users,
-          doctors,
-          diseases,
-          medicines,
-          nutrition,
-          reports,
-        ] = await Promise.all([
-          ['admin', 'superadmin'].includes(user.role)
-            ? getUsers().catch(() => [])
-            : Promise.resolve([]),
-          getDoctors().catch(() => []),
-          getDiseases().catch(() => []),
-          getMedicines().catch(() => []),
-          getNutrition().catch(() => []),
-          ['admin', 'superadmin'].includes(user.role)
-            ? getReports().catch(() => [])
-            : Promise.resolve([]),
-        ]);
+        setLoading(true);
+
+        let users: any[] = [];
+        let statsData: any = {};
+        let diseases: any[] = [];
+        let medicines: any[] = [];
+        let nutrition: any[] = [];
+        let reports: any[] = [];
+
+        if (['admin', 'superadmin'].includes(user.role)) {
+          statsData = await getSystemStats().catch(() => ({}));
+          users = await getAllUsersFromSuperadmin().catch(() => []);
+          reports = await getReports().catch(() => []);
+        }
+
+        diseases = await getDiseases().catch(() => []);
+        medicines = await getMedicines().catch(() => []);
+        nutrition = await getNutrition().catch(() => []);
 
         setStats({
-          users: Array.isArray(users) ? users.length : 0,
-          doctors: Array.isArray(doctors) ? doctors.length : 0,
+          totalUsers: statsData.totalUsers ?? users.length ?? 0,
+          doctors:
+            statsData.doctors ??
+            users.filter((u: any) => u.role === 'doctor').length,
+          pharmacists:
+            statsData.pharmacists ??
+            users.filter((u: any) => u.role === 'pharmacist').length,
+          sellers: users.filter((u: any) => u.role === 'seller').length,
+          admins: users.filter((u: any) => ['admin', 'superadmin'].includes(u.role)).length,
+          pendingUsers:
+            statsData.pendingUsers ??
+            users.filter((u: any) => u.approvalStatus === 'pending').length,
           diseases: Array.isArray(diseases) ? diseases.length : 0,
           medicines: Array.isArray(medicines) ? medicines.length : 0,
           nutrition: Array.isArray(nutrition) ? nutrition.length : 0,
           reports: Array.isArray(reports) ? reports.length : 0,
         });
       } catch (error) {
-        console.error(error);
+        console.error('Dashboard overview fetch failed:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -76,17 +105,32 @@ export default function DashboardHome() {
     <div className="space-y-6">
       <DashboardHero
         title="Dashboard Overview"
-        description="Monitor users, doctors, medicines, diseases, nutrition data, and report activity from one premium control panel."
+        description="Live platform statistics from your database."
       />
 
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        <StatCard title="Total Users" value={stats.users} />
-        <StatCard title="Doctors" value={stats.doctors} />
-        <StatCard title="Diseases" value={stats.diseases} />
-        <StatCard title="Medicines" value={stats.medicines} />
-        <StatCard title="Nutrition Guides" value={stats.nutrition} />
-        <StatCard title="Reports" value={stats.reports} />
-      </div>
+      {loading ? (
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-5">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <div
+              key={i}
+              className="h-32 animate-pulse rounded-[28px] border border-emerald-100 bg-white"
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-5">
+          <StatCard title="Total Users" value={stats.totalUsers} />
+          <StatCard title="Doctors" value={stats.doctors} />
+          <StatCard title="Pharmacists" value={stats.pharmacists} />
+          <StatCard title="Sellers" value={stats.sellers} />
+          <StatCard title="Admins" value={stats.admins} />
+          <StatCard title="Pending Users" value={stats.pendingUsers} />
+          <StatCard title="Diseases" value={stats.diseases} />
+          <StatCard title="Medicines" value={stats.medicines} />
+          <StatCard title="Nutrition Guides" value={stats.nutrition} />
+          <StatCard title="Reports" value={stats.reports} />
+        </div>
+      )}
     </div>
   );
 }

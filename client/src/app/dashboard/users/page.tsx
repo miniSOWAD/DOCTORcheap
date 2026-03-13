@@ -4,22 +4,31 @@ import { useEffect, useState } from 'react';
 import DashboardHero from '@/components/common/sections/DashboardHero';
 import TableShell from '@/components/common/tables/TableShell';
 import useRoleGuard from '@/hooks/useRoleGuard';
-import { deleteUser, getUsers, updateUserRole } from '@/services/user.service';
+import {
+  getAllUsersFromSuperadmin,
+  deleteUserFromSuperadmin,
+} from '@/services/superadmin.service';
+import { updateUserRole } from '@/services/user.service';
 import { IUser } from '@/types/user';
 
 export default function DashboardUsersPage() {
   const { isReady, user } = useRoleGuard(['admin', 'superadmin']);
   const [items, setItems] = useState<IUser[]>([]);
   const [loading, setLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const loadUsers = async () => {
     try {
       setLoading(true);
-      const data = await getUsers();
+      setErrorMessage('');
+      const data = await getAllUsersFromSuperadmin();
       setItems(Array.isArray(data) ? data : []);
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      console.error('Users page fetch failed:', error);
       setItems([]);
+      setErrorMessage(
+        error?.response?.data?.message || 'Failed to fetch users from database',
+      );
     } finally {
       setLoading(false);
     }
@@ -39,6 +48,12 @@ export default function DashboardUsersPage() {
         description="View platform users, update roles, and remove accounts when necessary."
       />
 
+      {errorMessage && (
+        <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
+          {errorMessage}
+        </div>
+      )}
+
       <TableShell title="Users List" subtitle="All registered users in the system">
         {loading ? (
           <div className="p-6 text-slate-500">Loading users...</div>
@@ -48,7 +63,10 @@ export default function DashboardUsersPage() {
               <tr>
                 <th className="px-6 py-4">Name</th>
                 <th className="px-6 py-4">Email</th>
+                <th className="px-6 py-4">User ID</th>
+                <th className="px-6 py-4">Phone</th>
                 <th className="px-6 py-4">Role</th>
+                <th className="px-6 py-4">Approval</th>
                 <th className="px-6 py-4">Actions</th>
               </tr>
             </thead>
@@ -57,6 +75,8 @@ export default function DashboardUsersPage() {
                 <tr key={item._id} className="border-t border-emerald-50">
                   <td className="px-6 py-4 font-medium text-slate-800">{item.name}</td>
                   <td className="px-6 py-4 text-slate-600">{item.email || 'N/A'}</td>
+                  <td className="px-6 py-4 text-slate-600">{item.userId || 'N/A'}</td>
+                  <td className="px-6 py-4 text-slate-600">{item.phone || 'N/A'}</td>
                   <td className="px-6 py-4">
                     <select
                       defaultValue={item.role}
@@ -75,11 +95,14 @@ export default function DashboardUsersPage() {
                       <option value="superadmin">superadmin</option>
                     </select>
                   </td>
+                  <td className="px-6 py-4 capitalize text-slate-600">
+                    {item.approvalStatus || 'N/A'}
+                  </td>
                   <td className="px-6 py-4">
                     <button
                       onClick={async () => {
                         if (!item._id) return;
-                        await deleteUser(item._id);
+                        await deleteUserFromSuperadmin(item._id);
                         loadUsers();
                       }}
                       className="rounded-xl bg-red-500 px-4 py-2 text-sm font-semibold text-white"

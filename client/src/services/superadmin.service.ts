@@ -20,12 +20,12 @@ export const rejectUser = async (id: string) => {
   return data;
 };
 
-export const getAllUsers = async () => {
+export const getAllUsersFromSuperadmin = async () => {
   const { data } = await api.get('/superadmin/users');
   return data;
 };
 
-export const deleteUser = async (id: string) => {
+export const deleteUserFromSuperadmin = async (id: string) => {
   const { data } = await api.delete(`/superadmin/delete/${id}`);
   return data;
 };
