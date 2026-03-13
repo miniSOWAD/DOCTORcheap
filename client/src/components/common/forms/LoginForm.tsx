@@ -27,21 +27,26 @@ export default function LoginForm() {
     const data = await loginUser(form);
     login(data.accessToken, data.user);
 
-    const role = data.user?.role;
+    setTimeout(() => {
+      const role = data.user?.role;
 
-    if (role === 'superadmin') {
-      router.push('/dashboard/superadmin');
-    } else if (role === 'admin') {
-      router.push('/dashboard/admin');
-    } else if (role === 'doctor') {
-      router.push('/dashboard/doctor');
-    } else if (role === 'pharmacist') {
-      router.push('/dashboard/pharmacist');
-    } else if (role === 'seller') {
-      router.push('/dashboard/seller');
-    } else {
-      router.push('/dashboard/user');
-    }
+      if (role === 'superadmin') {
+        router.replace('/dashboard/superadmin');
+      } else if (role === 'admin') {
+        router.replace('/dashboard/admin');
+      } else if (role === 'doctor') {
+        router.replace('/dashboard/doctor');
+      } else if (role === 'pharmacist') {
+        router.replace('/dashboard/pharmacist');
+      } else if (role === 'seller') {
+        router.replace('/dashboard/seller');
+      } else {
+        router.replace('/dashboard/user');
+      }
+
+      router.refresh();
+    }, 100);
+    
   } catch (error: any) {
     alert(error?.response?.data?.message || 'Login failed');
   } finally {

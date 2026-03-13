@@ -5,17 +5,21 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from './useAuth';
 
 export default function useRoleGuard(allowedRoles: string[]) {
-  const { user } = useAuth();
+  const { user, isReady } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
+    if (!isReady) return;
+
     if (!user) {
-      router.push('/login');
+      router.replace('/login');
       return;
     }
 
     if (!allowedRoles.includes(user.role)) {
-      router.push('/');
+      router.replace('/');
     }
-  }, [user, allowedRoles, router]);
+  }, [user, isReady, allowedRoles, router]);
+
+  return { user, isReady };
 }

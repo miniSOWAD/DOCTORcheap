@@ -1,11 +1,10 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/(auth)/login/page": "app/(auth)/login/page.js",
-  "/icon.png/route": "app/icon.png/route.js",
   "/dashboard/superadmin/page": "app/dashboard/superadmin/page.js",
+  "/dashboard/diseases/page": "app/dashboard/diseases/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
   "/dashboard/users/page": "app/dashboard/users/page.js",
+  "/dashboard/doctors/page": "app/dashboard/doctors/page.js",
   "/dashboard/medicines/page": "app/dashboard/medicines/page.js",
-  "/dashboard/reports/page": "app/dashboard/reports/page.js",
   "/dashboard/nutrition/page": "app/dashboard/nutrition/page.js",
-  "/dashboard/page": "app/dashboard/page.js"
+  "/dashboard/reports/page": "app/dashboard/reports/page.js"
 }

@@ -1,5 +1,16 @@
 import api from '@/lib/axios';
 
-export const getUsers = async () => (await api.get('/users')).data;
-export const updateUserRole = async (id: string, role: string) => (await api.patch(`/users/${id}/role`, { role })).data;
-export const deleteUser = async (id: string) => (await api.delete(`/users/${id}`)).data;
+export const getUsers = async () => {
+  const { data } = await api.get('/users');
+  return data;
+};
+
+export const updateUserRole = async (id: string, role: string) => {
+  const { data } = await api.patch(`/users/${id}/role`, { role });
+  return data;
+};
+
+export const deleteUser = async (id: string) => {
+  const { data } = await api.delete(`/users/${id}`);
+  return data;
+};

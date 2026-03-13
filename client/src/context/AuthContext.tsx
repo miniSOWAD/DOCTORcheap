@@ -6,6 +6,7 @@ import { IUser } from '@/types/user';
 interface AuthContextType {
   user: IUser | null;
   token: string | null;
+  isReady: boolean;
   login: (token: string, user: IUser) => void;
   logout: () => void;
 }
@@ -13,6 +14,7 @@ interface AuthContextType {
 export const AuthContext = createContext<AuthContextType>({
   user: null,
   token: null,
+  isReady: false,
   login: () => {},
   logout: () => {},
 });
@@ -20,6 +22,7 @@ export const AuthContext = createContext<AuthContextType>({
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<IUser | null>(null);
   const [token, setToken] = useState<string | null>(null);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
@@ -27,6 +30,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     if (storedToken) setToken(storedToken);
     if (storedUser) setUser(JSON.parse(storedUser));
+
+    setIsReady(true);
   }, []);
 
   const login = (newToken: string, newUser: IUser) => {
@@ -35,8 +40,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     localStorage.setItem('token', newToken);
     localStorage.setItem('user', JSON.stringify(newUser));
-
-    document.cookie = `token=${newToken}; path=/; max-age=604800; SameSite=Lax`;
   };
 
   const logout = () => {
@@ -45,12 +48,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-
-    document.cookie = 'token=; path=/; max-age=0; SameSite=Lax';
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout }}>
+    <AuthContext.Provider value={{ user, token, isReady, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
