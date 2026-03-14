@@ -8,6 +8,7 @@ import {
   ShieldCheck,
   BriefcaseMedical,
   ClipboardList,
+  Store,
 } from 'lucide-react';
 
 export const dashboardNavItems = [
@@ -45,6 +46,13 @@ export const dashboardNavItems = [
     icon: BriefcaseMedical,
     description: 'Manage pharmacists',
     roles: ['admin', 'superadmin'],
+  },
+  {
+    label: 'Sellers',
+    href: '/dashboard/sellers',
+    icon: Store,
+    description: 'Manage sellers',
+    roles: ['superadmin'],
   },
   {
     label: 'Medicines',

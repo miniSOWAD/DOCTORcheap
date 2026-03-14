@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Req, UseGuards, ForbiddenException } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
 import { RolesGuard } from '@/common/guards/roles.guard';
@@ -17,8 +17,16 @@ export class UsersController {
   }
 
   @Post()
-  @Roles(Role.ADMIN, Role.SUPERADMIN)
-  create(@Body() body: any) {
+  @Roles(Role.SUPERADMIN, Role.PHARMACIST)
+  create(@Body() body: any, @Req() req: any) {
+    if (req.user?.role === Role.PHARMACIST && body.role !== Role.SELLER) {
+      throw new ForbiddenException('Pharmacist can only create seller accounts');
+    }
+
+    if (req.user?.role === Role.PHARMACIST) {
+      body.approvalStatus = 'pending';
+    }
+
     return this.usersService.create(body);
   }
 
