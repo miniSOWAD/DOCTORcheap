@@ -21,6 +21,18 @@ __decorate([
 __decorate([
     (0, mongoose_1.Prop)({ type: [String], default: [] }),
     __metadata("design:type", Array)
+], Nutrition.prototype, "foodLines", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Nutrition.prototype, "diseaseUsedFor", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Nutrition.prototype, "precautions", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: [String], default: [] }),
+    __metadata("design:type", Array)
 ], Nutrition.prototype, "recommendedFoods", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ type: [String], default: [] }),

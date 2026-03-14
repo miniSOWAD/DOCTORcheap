@@ -13,17 +13,6 @@ export declare class MedicinesController {
     } & Required<{
         _id: import("mongoose").Types.ObjectId;
     }>)[]>;
-    findOne(id: string): Promise<import("mongoose").Document<unknown, {}, import("mongoose").Document<unknown, {}, import("../../database/schemas/medicine.schema").Medicine, {}, {}> & import("../../database/schemas/medicine.schema").Medicine & {
-        _id: import("mongoose").Types.ObjectId;
-    } & {
-        __v: number;
-    }, {}, {}> & import("mongoose").Document<unknown, {}, import("../../database/schemas/medicine.schema").Medicine, {}, {}> & import("../../database/schemas/medicine.schema").Medicine & {
-        _id: import("mongoose").Types.ObjectId;
-    } & {
-        __v: number;
-    } & Required<{
-        _id: import("mongoose").Types.ObjectId;
-    }>>;
     create(body: any): Promise<import("mongoose").Document<unknown, {}, import("mongoose").Document<unknown, {}, import("../../database/schemas/medicine.schema").Medicine, {}, {}> & import("../../database/schemas/medicine.schema").Medicine & {
         _id: import("mongoose").Types.ObjectId;
     } & {
@@ -35,6 +24,12 @@ export declare class MedicinesController {
     } & Required<{
         _id: import("mongoose").Types.ObjectId;
     }>>;
+    bulkImport(body: {
+        medicines: any[];
+    }): Promise<{
+        message: string;
+        insertedCount: number;
+    }>;
     update(id: string, body: any): Promise<import("mongoose").Document<unknown, {}, import("mongoose").Document<unknown, {}, import("../../database/schemas/medicine.schema").Medicine, {}, {}> & import("../../database/schemas/medicine.schema").Medicine & {
         _id: import("mongoose").Types.ObjectId;
     } & {

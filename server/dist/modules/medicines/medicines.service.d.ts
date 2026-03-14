@@ -3,17 +3,6 @@ import { Medicine, MedicineDocument } from '@/database/schemas/medicine.schema';
 export declare class MedicinesService {
     private readonly medicineModel;
     constructor(medicineModel: Model<MedicineDocument>);
-    create(payload: Partial<Medicine>): Promise<import("mongoose").Document<unknown, {}, import("mongoose").Document<unknown, {}, Medicine, {}, {}> & Medicine & {
-        _id: import("mongoose").Types.ObjectId;
-    } & {
-        __v: number;
-    }, {}, {}> & import("mongoose").Document<unknown, {}, Medicine, {}, {}> & Medicine & {
-        _id: import("mongoose").Types.ObjectId;
-    } & {
-        __v: number;
-    } & Required<{
-        _id: import("mongoose").Types.ObjectId;
-    }>>;
     findAll(): Promise<(import("mongoose").Document<unknown, {}, import("mongoose").Document<unknown, {}, Medicine, {}, {}> & Medicine & {
         _id: import("mongoose").Types.ObjectId;
     } & {
@@ -25,7 +14,7 @@ export declare class MedicinesService {
     } & Required<{
         _id: import("mongoose").Types.ObjectId;
     }>)[]>;
-    findOne(id: string): Promise<import("mongoose").Document<unknown, {}, import("mongoose").Document<unknown, {}, Medicine, {}, {}> & Medicine & {
+    create(payload: any): Promise<import("mongoose").Document<unknown, {}, import("mongoose").Document<unknown, {}, Medicine, {}, {}> & Medicine & {
         _id: import("mongoose").Types.ObjectId;
     } & {
         __v: number;
@@ -36,7 +25,13 @@ export declare class MedicinesService {
     } & Required<{
         _id: import("mongoose").Types.ObjectId;
     }>>;
-    update(id: string, payload: Partial<Medicine>): Promise<import("mongoose").Document<unknown, {}, import("mongoose").Document<unknown, {}, Medicine, {}, {}> & Medicine & {
+    bulkImport(payload: {
+        medicines: any[];
+    }): Promise<{
+        message: string;
+        insertedCount: number;
+    }>;
+    update(id: string, payload: any): Promise<import("mongoose").Document<unknown, {}, import("mongoose").Document<unknown, {}, Medicine, {}, {}> & Medicine & {
         _id: import("mongoose").Types.ObjectId;
     } & {
         __v: number;

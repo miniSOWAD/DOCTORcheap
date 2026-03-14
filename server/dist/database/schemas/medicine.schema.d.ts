@@ -2,11 +2,14 @@ import { HydratedDocument } from 'mongoose';
 export type MedicineDocument = HydratedDocument<Medicine>;
 export declare class Medicine {
     name: string;
-    genericName: string;
-    brand: string;
-    dosage: string;
+    genericName?: string;
+    brand?: string;
+    dosage?: string;
     price: number;
+    unitPrice?: number;
+    ingredients?: string;
     usage?: string;
+    usedFor?: string[];
     sideEffects?: string[];
     imageUrl?: string;
     pdfUrl?: string;

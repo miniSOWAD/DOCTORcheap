@@ -21,20 +21,41 @@ let MedicinesService = class MedicinesService {
     constructor(medicineModel) {
         this.medicineModel = medicineModel;
     }
-    async create(payload) {
-        return this.medicineModel.create(payload);
-    }
     async findAll() {
         return this.medicineModel.find().sort({ createdAt: -1 });
     }
-    async findOne(id) {
-        const item = await this.medicineModel.findById(id);
-        if (!item)
-            throw new common_1.NotFoundException('Medicine not found');
-        return item;
+    async create(payload) {
+        return this.medicineModel.create(payload);
+    }
+    async bulkImport(payload) {
+        var _a;
+        if (!((_a = payload.medicines) === null || _a === void 0 ? void 0 : _a.length)) {
+            return { message: 'No medicines provided', insertedCount: 0 };
+        }
+        const docs = payload.medicines.map((item) => ({
+            name: item.name,
+            price: item.price || 0,
+            unitPrice: item.unitPrice || 0,
+            ingredients: item.ingredients || '',
+            usage: item.usage || item.ingredients || '',
+            usedFor: Array.isArray(item.usedFor) ? item.usedFor : [],
+            sideEffects: Array.isArray(item.sideEffects) ? item.sideEffects : [],
+            genericName: item.genericName || '',
+            brand: item.brand || '',
+            dosage: item.dosage || '',
+            imageUrl: item.imageUrl || '',
+            pdfUrl: item.pdfUrl || '',
+        }));
+        const inserted = await this.medicineModel.insertMany(docs, { ordered: false });
+        return {
+            message: 'Medicines imported successfully',
+            insertedCount: inserted.length,
+        };
     }
     async update(id, payload) {
-        const updated = await this.medicineModel.findByIdAndUpdate(id, payload, { new: true });
+        const updated = await this.medicineModel.findByIdAndUpdate(id, payload, {
+            new: true,
+        });
         if (!updated)
             throw new common_1.NotFoundException('Medicine not found');
         return updated;

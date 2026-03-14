@@ -26,8 +26,24 @@ let UsersController = class UsersController {
     findAll() {
         return this.usersService.findAll();
     }
+    create(body, req) {
+        var _a, _b;
+        if (((_a = req.user) === null || _a === void 0 ? void 0 : _a.role) === role_enum_1.Role.PHARMACIST && body.role !== role_enum_1.Role.SELLER) {
+            throw new common_1.ForbiddenException('Pharmacist can only create seller accounts');
+        }
+        if (((_b = req.user) === null || _b === void 0 ? void 0 : _b.role) === role_enum_1.Role.PHARMACIST) {
+            body.approvalStatus = 'pending';
+        }
+        return this.usersService.create(body);
+    }
+    update(id, body) {
+        return this.usersService.update(id, body);
+    }
     updateRole(id, body) {
         return this.usersService.updateRole(id, body.role);
+    }
+    updateApprovalStatus(id, body) {
+        return this.usersService.updateApprovalStatus(id, body.approvalStatus);
     }
     delete(id) {
         return this.usersService.delete(id);
@@ -42,6 +58,24 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findAll", null);
 __decorate([
+    (0, common_1.Post)(),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.SUPERADMIN, role_enum_1.Role.PHARMACIST),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN, role_enum_1.Role.SUPERADMIN),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "update", null);
+__decorate([
     (0, common_1.Patch)(':id/role'),
     (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN, role_enum_1.Role.SUPERADMIN),
     __param(0, (0, common_1.Param)('id')),
@@ -50,6 +84,15 @@ __decorate([
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "updateRole", null);
+__decorate([
+    (0, common_1.Patch)(':id/approval-status'),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN, role_enum_1.Role.SUPERADMIN),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "updateApprovalStatus", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN, role_enum_1.Role.SUPERADMIN),
