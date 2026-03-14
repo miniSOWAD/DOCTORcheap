@@ -18,7 +18,14 @@ export const dashboardNavItems = [
     href: '/dashboard',
     icon: LayoutDashboard,
     description: 'Dashboard summary',
-    roles: ['admin', 'superadmin', 'doctor', 'seller', 'pharmacist', 'user'],
+    roles: ['admin', 'superadmin', 'seller', 'pharmacist', 'user'],
+  },
+  {
+    label: 'Doctor Dashboard',
+    href: '/dashboard/doctor',
+    icon: LayoutDashboard,
+    description: 'Doctor overview',
+    roles: ['doctor'],
   },
   {
     label: 'Users',
@@ -82,13 +89,6 @@ export const dashboardNavItems = [
     icon: ShieldCheck,
     description: 'Supreme control',
     roles: ['superadmin'],
-  },
-  {
-    label: 'Doctor Dashboard',
-    href: '/dashboard/doctor',
-    icon: LayoutDashboard,
-    description: 'Doctor overview',
-    roles: ['doctor'],
   },
   {
     label: 'Profile Update',
