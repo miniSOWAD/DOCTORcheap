@@ -8,20 +8,29 @@ export class Medicine {
   @Prop({ required: true })
   name: string;
 
-  @Prop({ required: true })
-  genericName: string;
+  @Prop()
+  genericName?: string;
 
-  @Prop({ required: true })
-  brand: string;
+  @Prop()
+  brand?: string;
 
-  @Prop({ required: true })
-  dosage: string;
+  @Prop()
+  dosage?: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, default: 0 })
   price: number;
+
+  @Prop({ default: 0 })
+  unitPrice?: number;
+
+  @Prop()
+  ingredients?: string;
 
   @Prop()
   usage?: string;
+
+  @Prop({ type: [String], default: [] })
+  usedFor?: string[];
 
   @Prop({ type: [String], default: [] })
   sideEffects?: string[];

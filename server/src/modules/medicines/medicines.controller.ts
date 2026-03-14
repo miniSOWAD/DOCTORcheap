@@ -14,28 +14,30 @@ export class MedicinesController {
     return this.medicinesService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.medicinesService.findOne(id);
-  }
-
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.ADMIN, Role.SUPERADMIN, Role.SELLER, Role.PHARMACIST)
   @Post()
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(Role.SUPERADMIN)
   create(@Body() body: any) {
     return this.medicinesService.create(body);
   }
 
+  @Post('bulk-import')
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.ADMIN, Role.SUPERADMIN, Role.SELLER, Role.PHARMACIST)
+  @Roles(Role.SUPERADMIN, Role.ADMIN, Role.PHARMACIST, Role.SELLER)
+  bulkImport(@Body() body: { medicines: any[] }) {
+    return this.medicinesService.bulkImport(body);
+  }
+
   @Patch(':id')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(Role.SUPERADMIN, Role.ADMIN, Role.PHARMACIST, Role.SELLER)
   update(@Param('id') id: string, @Body() body: any) {
     return this.medicinesService.update(id, body);
   }
 
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.ADMIN, Role.SUPERADMIN, Role.SELLER, Role.PHARMACIST)
   @Delete(':id')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(Role.SUPERADMIN)
   delete(@Param('id') id: string) {
     return this.medicinesService.delete(id);
   }
