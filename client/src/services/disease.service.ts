@@ -1,7 +1,26 @@
 import api from '@/lib/axios';
-import { IDisease } from '@/types/disease';
 
-export const getDiseases = async () => (await api.get('/diseases')).data;
-export const createDisease = async (payload: IDisease) => (await api.post('/diseases', payload)).data;
-export const updateDisease = async (id: string, payload: IDisease) => (await api.patch(`/diseases/${id}`, payload)).data;
-export const deleteDisease = async (id: string) => (await api.delete(`/diseases/${id}`)).data;
+export const getDiseases = async () => {
+  const { data } = await api.get('/diseases');
+  return data;
+};
+
+export const createDisease = async (payload: any) => {
+  const { data } = await api.post('/diseases', payload);
+  return data;
+};
+
+export const updateDisease = async (id: string, payload: any) => {
+  const { data } = await api.patch(`/diseases/${id}`, payload);
+  return data;
+};
+
+export const deleteDisease = async (id: string) => {
+  const { data } = await api.delete(`/diseases/${id}`);
+  return data;
+};
+
+export const bulkImportDiseases = async (payload: { diseases: any[] }) => {
+  const { data } = await api.post('/diseases/bulk-import', payload);
+  return data;
+};

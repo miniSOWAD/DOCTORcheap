@@ -9,6 +9,7 @@ import {
   BriefcaseMedical,
   ClipboardList,
   Store,
+  UserCog,
 } from 'lucide-react';
 
 export const dashboardNavItems = [
@@ -59,7 +60,7 @@ export const dashboardNavItems = [
     href: '/dashboard/medicines',
     icon: Pill,
     description: 'Medicine records',
-    roles: ['admin', 'superadmin', 'seller', 'pharmacist'],
+    roles: ['admin', 'superadmin', 'seller', 'pharmacist', 'doctor'],
   },
   {
     label: 'Nutrition',
@@ -81,5 +82,19 @@ export const dashboardNavItems = [
     icon: ShieldCheck,
     description: 'Supreme control',
     roles: ['superadmin'],
+  },
+  {
+    label: 'Doctor Dashboard',
+    href: '/dashboard/doctor',
+    icon: LayoutDashboard,
+    description: 'Doctor overview',
+    roles: ['doctor'],
+  },
+  {
+    label: 'Profile Update',
+    href: '/dashboard/doctor-profile',
+    icon: UserCog,
+    description: 'Update doctor profile',
+    roles: ['doctor'],
   },
 ];

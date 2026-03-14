@@ -9,10 +9,19 @@ export class Nutrition {
   title: string;
 
   @Prop({ type: [String], default: [] })
-  recommendedFoods: string[];
+  foodLines?: string[];
+
+  @Prop()
+  diseaseUsedFor?: string;
+
+  @Prop()
+  precautions?: string;
 
   @Prop({ type: [String], default: [] })
-  avoidedFoods: string[];
+  recommendedFoods?: string[];
+
+  @Prop({ type: [String], default: [] })
+  avoidedFoods?: string[];
 
   @Prop()
   notes?: string;

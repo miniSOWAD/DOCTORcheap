@@ -1,7 +1,26 @@
 import api from '@/lib/axios';
-import { INutrition } from '@/types/nutrition';
 
-export const getNutrition = async () => (await api.get('/nutrition')).data;
-export const createNutrition = async (payload: INutrition) => (await api.post('/nutrition', payload)).data;
-export const updateNutrition = async (id: string, payload: INutrition) => (await api.patch(`/nutrition/${id}`, payload)).data;
-export const deleteNutrition = async (id: string) => (await api.delete(`/nutrition/${id}`)).data;
+export const getNutrition = async () => {
+  const { data } = await api.get('/nutrition');
+  return data;
+};
+
+export const createNutrition = async (payload: any) => {
+  const { data } = await api.post('/nutrition', payload);
+  return data;
+};
+
+export const updateNutrition = async (id: string, payload: any) => {
+  const { data } = await api.patch(`/nutrition/${id}`, payload);
+  return data;
+};
+
+export const deleteNutrition = async (id: string) => {
+  const { data } = await api.delete(`/nutrition/${id}`);
+  return data;
+};
+
+export const bulkImportNutrition = async (payload: { nutrition: any[] }) => {
+  const { data } = await api.post('/nutrition/bulk-import', payload);
+  return data;
+};

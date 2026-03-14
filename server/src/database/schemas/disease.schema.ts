@@ -8,14 +8,29 @@ export class Disease {
   @Prop({ required: true })
   name: string;
 
-  @Prop({ type: [String], default: [] })
-  symptoms: string[];
+  @Prop()
+  seriousnessLevel?: string;
 
   @Prop({ type: [String], default: [] })
-  causes: string[];
+  symptoms?: string[];
 
   @Prop({ type: [String], default: [] })
-  precautions: string[];
+  warningSymptoms?: string[];
+
+  @Prop()
+  firstThingToDo?: string;
+
+  @Prop({ type: [String], default: [] })
+  doctorTypes?: string[];
+
+  @Prop()
+  nutritionLink?: string;
+
+  @Prop({ type: [String], default: [] })
+  causes?: string[];
+
+  @Prop({ type: [String], default: [] })
+  precautions?: string[];
 }
 
 export const DiseaseSchema = SchemaFactory.createForClass(Disease);

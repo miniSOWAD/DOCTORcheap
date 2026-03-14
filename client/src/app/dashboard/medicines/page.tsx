@@ -43,13 +43,19 @@ export default function DashboardMedicinesPage() {
   });
 
   const canManualCreate = user?.role === 'superadmin';
-  const canEdit = ['admin', 'superadmin', 'seller', 'pharmacist'].includes(
-    user?.role || '',
-  );
   const canDelete = user?.role === 'superadmin';
   const canBulkImport = ['admin', 'seller', 'pharmacist', 'superadmin'].includes(
     user?.role || '',
   );
+  const canEdit = [
+    'admin',
+    'superadmin',
+    'seller',
+    'pharmacist',
+    'doctor',
+  ].includes(user?.role || '');
+
+  const doctorEditOnlyUsedFor = user?.role === 'doctor';
 
   const loadData = async () => {
     try {
@@ -386,7 +392,25 @@ export default function DashboardMedicinesPage() {
                         <button
                           onClick={() => {
                             setEditingId(item._id || null);
-                            setForm(item);
+                            if (doctorEditOnlyUsedFor) {
+                              setForm({
+                                ...item,
+                                name: item.name,
+                                genericName: item.genericName,
+                                brand: item.brand,
+                                dosage: item.dosage,
+                                price: item.price,
+                                unitPrice: item.unitPrice,
+                                ingredients: item.ingredients,
+                                usage: item.usage,
+                                usedFor: item.usedFor || [],
+                                sideEffects: item.sideEffects || [],
+                                imageUrl: item.imageUrl,
+                                pdfUrl: item.pdfUrl,
+                              });
+                            } else {
+                              setForm(item);
+                            }
                           }}
                           className="rounded-xl bg-slate-800 px-4 py-2 text-sm font-semibold text-white"
                         >
