@@ -63,7 +63,7 @@ export default function AdminDashboardPage() {
     <div className="space-y-6">
       <DashboardHero
         title="Admin Dashboard"
-        description="Manage users, doctors, pharmacists, diseases, nutrition, and medicine data within admin permissions."
+        description="Manage users, doctors, pharmacists, diseases, nutrition and medicine data within admin permissions."
       />
 
       {loading ? (

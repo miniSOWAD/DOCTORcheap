@@ -27,7 +27,7 @@ export declare class UsersController {
             _id: import("mongoose").Types.ObjectId;
         }>;
     }>;
-    update(id: string, body: any): Promise<import("mongoose").Document<unknown, {}, import("mongoose").Document<unknown, {}, import("../../database/schemas/user.schema").User, {}, {}> & import("../../database/schemas/user.schema").User & {
+    update(id: string, body: any, req: any): Promise<import("mongoose").Document<unknown, {}, import("mongoose").Document<unknown, {}, import("../../database/schemas/user.schema").User, {}, {}> & import("../../database/schemas/user.schema").User & {
         _id: import("mongoose").Types.ObjectId;
     } & {
         __v: number;

@@ -36,7 +36,11 @@ let UsersController = class UsersController {
         }
         return this.usersService.create(body);
     }
-    update(id, body) {
+    update(id, body, req) {
+        var _a;
+        if (((_a = req.user) === null || _a === void 0 ? void 0 : _a.role) === role_enum_1.Role.PHARMACIST && body.role && body.role !== role_enum_1.Role.SELLER) {
+            throw new common_1.ForbiddenException('Pharmacist can only edit seller accounts');
+        }
         return this.usersService.update(id, body);
     }
     updateRole(id, body) {
@@ -52,14 +56,14 @@ let UsersController = class UsersController {
 exports.UsersController = UsersController;
 __decorate([
     (0, common_1.Get)(),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN, role_enum_1.Role.SUPERADMIN),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN, role_enum_1.Role.SUPERADMIN, role_enum_1.Role.PHARMACIST),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Post)(),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.SUPERADMIN, role_enum_1.Role.PHARMACIST),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN, role_enum_1.Role.SUPERADMIN, role_enum_1.Role.PHARMACIST),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Req)()),
     __metadata("design:type", Function),
@@ -68,11 +72,12 @@ __decorate([
 ], UsersController.prototype, "create", null);
 __decorate([
     (0, common_1.Patch)(':id'),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN, role_enum_1.Role.SUPERADMIN),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN, role_enum_1.Role.SUPERADMIN, role_enum_1.Role.PHARMACIST),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
+    __param(2, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:paramtypes", [String, Object, Object]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "update", null);
 __decorate([

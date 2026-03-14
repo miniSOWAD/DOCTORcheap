@@ -21,6 +21,28 @@ export default function DashboardSidebar() {
 
   const role = user?.role || 'user';
 
+  const dashboardTitleMap: Record<string, string> = {
+  superadmin: 'SuperAdmin Panel',
+  admin: 'Admin Dashboard',
+  doctor: 'Doctor Dashboard',
+  pharmacist: 'Pharmacist Dashboard',
+  seller: 'Seller Dashboard',
+  user: 'User Dashboard',
+};
+
+const dashboardSubtitleMap: Record<string, string> = {
+  superadmin: 'Supreme Access Control',
+  admin: 'Administrative Access Control',
+  doctor: 'Doctor Access Control',
+  pharmacist: 'Pharmacist Access Control',
+  seller: 'Seller Access Control',
+  user: 'User Access Control',
+};
+
+const dashboardTitle = dashboardTitleMap[role] || 'Dashboard';
+const dashboardSubtitle = dashboardSubtitleMap[role] || 'Access Control';
+
+
   const filteredItems = dashboardNavItems.filter((item) => {
     if (!item.roles || item.roles.length === 0) return true;
     return item.roles.includes(role);
@@ -49,11 +71,12 @@ export default function DashboardSidebar() {
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-emerald-800">
-                    {role === 'superadmin' ? 'SuperAdmin Panel' : 'Admin Dashboard'}
+                    {dashboardTitle}
                   </p>
                   <p className="text-xs capitalize text-slate-500">
-                    {role} access control
+                    {dashboardSubtitle}
                   </p>
+
                 </div>
               </div>
             )}

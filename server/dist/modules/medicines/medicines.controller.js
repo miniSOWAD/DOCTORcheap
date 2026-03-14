@@ -49,7 +49,7 @@ __decorate([
 __decorate([
     (0, common_1.Post)(),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.SUPERADMIN),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.SUPERADMIN, role_enum_1.Role.PHARMACIST),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -67,7 +67,7 @@ __decorate([
 __decorate([
     (0, common_1.Patch)(':id'),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.SUPERADMIN, role_enum_1.Role.ADMIN, role_enum_1.Role.PHARMACIST, role_enum_1.Role.SELLER),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.SUPERADMIN, role_enum_1.Role.ADMIN, role_enum_1.Role.PHARMACIST, role_enum_1.Role.SELLER, role_enum_1.Role.DOCTOR),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -77,7 +77,7 @@ __decorate([
 __decorate([
     (0, common_1.Delete)(':id'),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
-    (0, roles_decorator_1.Roles)(role_enum_1.Role.SUPERADMIN),
+    (0, roles_decorator_1.Roles)(role_enum_1.Role.SUPERADMIN, role_enum_1.Role.PHARMACIST),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
