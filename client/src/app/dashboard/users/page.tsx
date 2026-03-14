@@ -1,13 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import DashboardHero from '@/components/common/sections/DashboardHero';
 import TableShell from '@/components/common/tables/TableShell';
 import useRoleGuard from '@/hooks/useRoleGuard';
-import {
-  getAllUsersFromSuperadmin,
-  deleteUserFromSuperadmin,
-} from '@/services/superadmin.service';
+import { getAllUsersFromSuperadmin, deleteUserFromSuperadmin } from '@/services/superadmin.service';
 import { updateUserRole } from '@/services/user.service';
 import { IUser } from '@/types/user';
 
@@ -39,13 +36,20 @@ export default function DashboardUsersPage() {
     loadUsers();
   }, [isReady, user]);
 
+  const visibleItems = useMemo(() => {
+    if (user?.role === 'superadmin') return items;
+    return items.filter((item) =>
+      ['user', 'doctor', 'pharmacist'].includes(item.role),
+    );
+  }, [items, user]);
+
   if (!isReady || !user) return <div className="p-6">Loading...</div>;
 
   return (
     <div className="space-y-6">
       <DashboardHero
         title="Manage Users"
-        description="View platform users, update roles, and remove accounts when necessary."
+        description="Manage users, doctors and pharmacists."
       />
 
       {errorMessage && (
@@ -54,7 +58,7 @@ export default function DashboardUsersPage() {
         </div>
       )}
 
-      <TableShell title="Users List" subtitle="All registered users in the system">
+      <TableShell title="Users List" subtitle="Allowed user roles only">
         {loading ? (
           <div className="p-6 text-slate-500">Loading users...</div>
         ) : (
@@ -71,7 +75,7 @@ export default function DashboardUsersPage() {
               </tr>
             </thead>
             <tbody>
-              {items.map((item) => (
+              {visibleItems.map((item) => (
                 <tr key={item._id} className="border-t border-emerald-50">
                   <td className="px-6 py-4 font-medium text-slate-800">{item.name}</td>
                   <td className="px-6 py-4 text-slate-600">{item.email || 'N/A'}</td>
@@ -90,9 +94,6 @@ export default function DashboardUsersPage() {
                       <option value="user">user</option>
                       <option value="doctor">doctor</option>
                       <option value="pharmacist">pharmacist</option>
-                      <option value="seller">seller</option>
-                      <option value="admin">admin</option>
-                      <option value="superadmin">superadmin</option>
                     </select>
                   </td>
                   <td className="px-6 py-4 capitalize text-slate-600">

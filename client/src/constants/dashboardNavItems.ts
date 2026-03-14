@@ -6,6 +6,7 @@ import {
   Pill,
   Apple,
   ShieldCheck,
+  BriefcaseMedical,
   ClipboardList,
 } from 'lucide-react';
 
@@ -36,6 +37,13 @@ export const dashboardNavItems = [
     href: '/dashboard/doctors',
     icon: Stethoscope,
     description: 'Doctor directory',
+    roles: ['admin', 'superadmin'],
+  },
+  {
+    label: 'Pharmacists',
+    href: '/dashboard/pharmacists',
+    icon: BriefcaseMedical,
+    description: 'Manage pharmacists',
     roles: ['admin', 'superadmin'],
   },
   {

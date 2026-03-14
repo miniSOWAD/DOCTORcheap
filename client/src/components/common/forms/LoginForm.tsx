@@ -47,8 +47,19 @@ export default function LoginForm() {
       router.refresh();
     }, 100);
     
-  } catch (error: any) {
-    alert(error?.response?.data?.message || 'Login failed');
+    } catch (error: any) {
+    const message = error?.response?.data?.message || 'Login failed';
+
+    if (
+      message.toLowerCase().includes('pending') ||
+      message.toLowerCase().includes('rejected')
+    ) {
+      alert(message);
+      router.replace('/');
+      return;
+    }
+
+    alert(message);
   } finally {
     setLoading(false);
   }

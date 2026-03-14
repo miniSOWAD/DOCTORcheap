@@ -24,6 +24,9 @@ export default function DashboardMedicinesPage() {
     imageUrl: '',
     pdfUrl: '',
   });
+  
+  const canCreateOrDelete = user?.role === 'superadmin';
+  const canEdit = ['admin', 'superadmin', 'seller', 'pharmacist'].includes(user?.role || '');
 
   const loadData = async () => {
     try {
@@ -67,6 +70,7 @@ export default function DashboardMedicinesPage() {
         description="Maintain medicine entries, upload documents, and manage product details."
       />
 
+    {canCreateOrDelete && (
       <div className="rounded-[28px] border border-emerald-100 bg-white p-6 shadow-md">
         <h2 className="mb-4 text-xl font-semibold text-slate-900">
           {editingId ? 'Edit Medicine' : 'Add Medicine'}
@@ -139,6 +143,7 @@ export default function DashboardMedicinesPage() {
           )}
         </div>
       </div>
+    )}
 
       <TableShell title="Medicine Records" subtitle="Current medicine entries in database">
         {loading ? (
@@ -180,6 +185,31 @@ export default function DashboardMedicinesPage() {
                       >
                         Delete
                       </button>
+
+                      {canEdit && (
+                        <button
+                          onClick={() => {
+                            setEditingId(item._id || null);
+                            setForm(item);
+                          }}
+                          className="rounded-xl bg-slate-800 px-4 py-2 text-sm font-semibold text-white"
+                        >
+                          Edit
+                        </button>
+                      )}
+
+                      {canCreateOrDelete && (
+                        <button
+                          onClick={async () => {
+                            if (!item._id) return;
+                            await deleteMedicine(item._id);
+                            loadData();
+                          }}
+                          className="rounded-xl bg-red-500 px-4 py-2 text-sm font-semibold text-white"
+                        >
+                          Delete
+                        </button>
+                      )}
                     </div>
                   </td>
                 </tr>

@@ -399,7 +399,7 @@ function SearchResultsSection({
             No matching results found
           </p>
           <p className="mt-2 text-sm text-slate-500">
-            Try a different keyword to search doctors, diseases, medicines, or nutrition.
+            Try a different keyword to search doctors, diseases, medicines or nutrition.
           </p>
         </div>
       ) : (
