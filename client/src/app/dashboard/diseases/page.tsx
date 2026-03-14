@@ -14,7 +14,7 @@ import {
 import { IDisease } from '@/types/disease';
 
 export default function DashboardDiseasesPage() {
-  const { isReady, user } = useRoleGuard(['admin', 'superadmin', 'doctor']);
+  const { isReady, user } = useRoleGuard(['admin', 'superadmin', 'doctor', 'pharmacist']);
   const [items, setItems] = useState<IDisease[]>([]);
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState<string | null>(null);

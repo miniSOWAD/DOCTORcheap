@@ -41,10 +41,13 @@ export default function DashboardSellersPage() {
     [allUsers],
   );
 
-  const canAdd = ['superadmin', 'pharmacist'].includes(authUser?.role || '');
-  const canEdit = authUser?.role === 'superadmin';
-  const canDelete = authUser?.role === 'superadmin';
-  const canChangeApproval = authUser?.role === 'superadmin';
+  const isSuperAdmin = authUser?.role === 'superadmin';
+  const isPharmacist = authUser?.role === 'pharmacist';
+
+  const canAdd = isSuperAdmin || isPharmacist;
+  const canEdit = isSuperAdmin || isPharmacist;
+  const canDelete = isSuperAdmin;
+  const canChangeApproval = isSuperAdmin;
 
   const loadData = async () => {
     try {
@@ -89,7 +92,7 @@ export default function DashboardSellersPage() {
     <div className="space-y-6">
       <DashboardHero
         title="Manage Sellers"
-        description="Superadmin can add, edit, delete, and approve sellers. Pharmacist can add sellers only."
+        description="Manage seller accounts and their approval status (Limited access to pharmacists, for help call page contact no.)."
       />
 
       {errorMessage && (
@@ -143,7 +146,10 @@ export default function DashboardSellersPage() {
                 onChange={(e) =>
                   setForm({
                     ...form,
-                    approvalStatus: e.target.value as 'approved' | 'pending' | 'rejected',
+                    approvalStatus: e.target.value as
+                      | 'approved'
+                      | 'pending'
+                      | 'rejected',
                   })
                 }
                 className="rounded-2xl border border-emerald-100 px-4 py-3"
@@ -154,7 +160,7 @@ export default function DashboardSellersPage() {
               </select>
             ) : (
               <div className="rounded-2xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
-                Seller will be created with pending approval.
+                Seller will be created or updated with pending approval.
               </div>
             )}
 
@@ -196,17 +202,12 @@ export default function DashboardSellersPage() {
                   const payload: any = {
                     ...form,
                     role: 'seller',
-                    approvalStatus:
-                      authUser?.role === 'superadmin'
-                        ? form.approvalStatus
-                        : 'pending',
+                    approvalStatus: isSuperAdmin
+                      ? form.approvalStatus
+                      : 'pending',
                   };
 
                   if (editingId) {
-                    if (!canEdit) {
-                      alert('Pharmacist cannot edit sellers');
-                      return;
-                    }
                     if (!payload.password) delete payload.password;
                     await updateUser(editingId, payload);
                   } else {
@@ -278,7 +279,10 @@ export default function DashboardSellersPage() {
                           if (!item._id) return;
                           await updateApprovalStatus(
                             item._id,
-                            e.target.value as 'approved' | 'pending' | 'rejected',
+                            e.target.value as
+                              | 'approved'
+                              | 'pending'
+                              | 'rejected',
                           );
                           loadData();
                         }}

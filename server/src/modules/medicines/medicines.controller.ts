@@ -16,7 +16,7 @@ export class MedicinesController {
 
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.SUPERADMIN)
+  @Roles(Role.SUPERADMIN, Role.PHARMACIST)
   create(@Body() body: any) {
     return this.medicinesService.create(body);
   }
@@ -30,14 +30,14 @@ export class MedicinesController {
 
   @Patch(':id')
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.SUPERADMIN, Role.ADMIN, Role.PHARMACIST, Role.SELLER)
+  @Roles(Role.SUPERADMIN, Role.ADMIN, Role.PHARMACIST, Role.SELLER, Role.DOCTOR)
   update(@Param('id') id: string, @Body() body: any) {
     return this.medicinesService.update(id, body);
   }
 
   @Delete(':id')
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.SUPERADMIN)
+  @Roles(Role.SUPERADMIN, Role.PHARMACIST)
   delete(@Param('id') id: string) {
     return this.medicinesService.delete(id);
   }

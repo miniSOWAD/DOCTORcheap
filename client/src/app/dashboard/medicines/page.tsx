@@ -42,8 +42,8 @@ export default function DashboardMedicinesPage() {
     pdfUrl: '',
   });
 
-  const canManualCreate = user?.role === 'superadmin';
-  const canDelete = user?.role === 'superadmin';
+  const canManualCreate = ['superadmin', 'pharmacist'].includes(user?.role || '');
+  const canDelete = ['superadmin', 'pharmacist'].includes(user?.role || '');
   const canBulkImport = ['admin', 'seller', 'pharmacist', 'superadmin'].includes(
     user?.role || '',
   );

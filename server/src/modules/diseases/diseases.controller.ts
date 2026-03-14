@@ -20,7 +20,7 @@ export class DiseasesController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.ADMIN, Role.SUPERADMIN, Role.DOCTOR)
+  @Roles(Role.ADMIN, Role.SUPERADMIN, Role.DOCTOR, Role.PHARMACIST)
   @Post()
   create(@Body() body: any) {
     return this.diseasesService.create(body);

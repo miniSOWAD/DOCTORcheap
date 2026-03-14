@@ -1,4 +1,15 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Req, UseGuards, ForbiddenException } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Req,
+  UseGuards,
+  ForbiddenException,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
 import { RolesGuard } from '@/common/guards/roles.guard';
@@ -11,13 +22,13 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  @Roles(Role.ADMIN, Role.SUPERADMIN)
+  @Roles(Role.ADMIN, Role.SUPERADMIN, Role.PHARMACIST)
   findAll() {
     return this.usersService.findAll();
   }
 
   @Post()
-  @Roles(Role.SUPERADMIN, Role.PHARMACIST)
+  @Roles(Role.ADMIN, Role.SUPERADMIN, Role.PHARMACIST)
   create(@Body() body: any, @Req() req: any) {
     if (req.user?.role === Role.PHARMACIST && body.role !== Role.SELLER) {
       throw new ForbiddenException('Pharmacist can only create seller accounts');
@@ -31,8 +42,12 @@ export class UsersController {
   }
 
   @Patch(':id')
-  @Roles(Role.ADMIN, Role.SUPERADMIN)
-  update(@Param('id') id: string, @Body() body: any) {
+  @Roles(Role.ADMIN, Role.SUPERADMIN, Role.PHARMACIST)
+  update(@Param('id') id: string, @Body() body: any, @Req() req: any) {
+    if (req.user?.role === Role.PHARMACIST && body.role && body.role !== Role.SELLER) {
+      throw new ForbiddenException('Pharmacist can only edit seller accounts');
+    }
+
     return this.usersService.update(id, body);
   }
 

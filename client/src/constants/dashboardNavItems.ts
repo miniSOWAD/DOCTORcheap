@@ -28,6 +28,13 @@ export const dashboardNavItems = [
     roles: ['doctor'],
   },
   {
+    label: 'Pharmacist Dashboard',
+    href: '/dashboard/pharmacist',
+    icon: LayoutDashboard,
+    description: 'Pharmacist overview',
+    roles: ['pharmacist'],
+  },
+  {
     label: 'Users',
     href: '/dashboard/users',
     icon: Users,
@@ -39,7 +46,7 @@ export const dashboardNavItems = [
     href: '/dashboard/diseases',
     icon: FileText,
     description: 'Disease records',
-    roles: ['admin', 'superadmin', 'doctor'],
+    roles: ['admin', 'superadmin', 'doctor', 'pharmacist'],
   },
   {
     label: 'Doctors',
@@ -60,7 +67,7 @@ export const dashboardNavItems = [
     href: '/dashboard/sellers',
     icon: Store,
     description: 'Manage sellers',
-    roles: ['superadmin'],
+    roles: ['superadmin', 'pharmacist'],
   },
   {
     label: 'Medicines',
@@ -96,5 +103,12 @@ export const dashboardNavItems = [
     icon: UserCog,
     description: 'Update doctor profile',
     roles: ['doctor'],
+  },
+  {
+    label: 'Profile Update',
+    href: '/dashboard/pharmacist-profile',
+    icon: UserCog,
+    description: 'Update pharmacist profile',
+    roles: ['pharmacist'],
   },
 ];
