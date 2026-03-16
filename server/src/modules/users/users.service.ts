@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcryptjs';
@@ -12,6 +16,12 @@ export class UsersService {
 
   async findAll() {
     return this.userModel.find().select('-password').sort({ createdAt: -1 });
+  }
+
+  async findById(id: string) {
+    const user = await this.userModel.findById(id).select('-password');
+    if (!user) throw new NotFoundException('User not found');
+    return user;
   }
 
   async create(payload: any) {
@@ -40,6 +50,30 @@ export class UsersService {
   }
 
   async update(id: string, payload: any) {
+    if (payload.userId) {
+      const existingUserId = await this.userModel.findOne({
+        userId: payload.userId,
+        _id: { $ne: id },
+      });
+      if (existingUserId) throw new BadRequestException('User ID already exists');
+    }
+
+    if (payload.phone) {
+      const existingPhone = await this.userModel.findOne({
+        phone: payload.phone,
+        _id: { $ne: id },
+      });
+      if (existingPhone) throw new BadRequestException('Phone already exists');
+    }
+
+    if (payload.email) {
+      const existingEmail = await this.userModel.findOne({
+        email: payload.email,
+        _id: { $ne: id },
+      });
+      if (existingEmail) throw new BadRequestException('Email already exists');
+    }
+
     if (payload.password) {
       payload.password = await bcrypt.hash(payload.password, 10);
     }
@@ -74,11 +108,5 @@ export class UsersService {
     const deleted = await this.userModel.findByIdAndDelete(id);
     if (!deleted) throw new NotFoundException('User not found');
     return { message: 'User deleted successfully' };
-  }
-
-  async findById(id: string) {
-    const user = await this.userModel.findById(id).select('-password');
-    if (!user) throw new NotFoundException('User not found');
-    return user;
   }
 }

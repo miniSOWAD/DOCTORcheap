@@ -26,32 +26,6 @@ let UsersController = class UsersController {
     findAll() {
         return this.usersService.findAll();
     }
-    create(body, req) {
-        var _a, _b;
-        if (((_a = req.user) === null || _a === void 0 ? void 0 : _a.role) === role_enum_1.Role.PHARMACIST && body.role !== role_enum_1.Role.SELLER) {
-            throw new common_1.ForbiddenException('Pharmacist can only create seller accounts');
-        }
-        if (((_b = req.user) === null || _b === void 0 ? void 0 : _b.role) === role_enum_1.Role.PHARMACIST) {
-            body.approvalStatus = 'pending';
-        }
-        return this.usersService.create(body);
-    }
-    update(id, body, req) {
-        var _a;
-        if (((_a = req.user) === null || _a === void 0 ? void 0 : _a.role) === role_enum_1.Role.PHARMACIST && body.role && body.role !== role_enum_1.Role.SELLER) {
-            throw new common_1.ForbiddenException('Pharmacist can only edit seller accounts');
-        }
-        return this.usersService.update(id, body);
-    }
-    updateRole(id, body) {
-        return this.usersService.updateRole(id, body.role);
-    }
-    updateApprovalStatus(id, body) {
-        return this.usersService.updateApprovalStatus(id, body.approvalStatus);
-    }
-    delete(id) {
-        return this.usersService.delete(id);
-    }
     getMe(req) {
         return this.usersService.findById(req.user.userId);
     }
@@ -69,6 +43,34 @@ let UsersController = class UsersController {
         const filteredBody = Object.fromEntries(Object.entries(body).filter(([key]) => allowedFields.includes(key)));
         return this.usersService.update(req.user.userId, filteredBody);
     }
+    create(body, req) {
+        var _a, _b;
+        if (((_a = req.user) === null || _a === void 0 ? void 0 : _a.role) === role_enum_1.Role.PHARMACIST && body.role !== role_enum_1.Role.SELLER) {
+            throw new common_1.ForbiddenException('Pharmacist can only create seller accounts');
+        }
+        if (((_b = req.user) === null || _b === void 0 ? void 0 : _b.role) === role_enum_1.Role.PHARMACIST) {
+            body.approvalStatus = 'pending';
+        }
+        return this.usersService.create(body);
+    }
+    update(id, body, req) {
+        var _a;
+        if (((_a = req.user) === null || _a === void 0 ? void 0 : _a.role) === role_enum_1.Role.PHARMACIST) {
+            if (body.role && body.role !== role_enum_1.Role.SELLER) {
+                throw new common_1.ForbiddenException('Pharmacist can only edit seller accounts');
+            }
+        }
+        return this.usersService.update(id, body);
+    }
+    updateRole(id, body) {
+        return this.usersService.updateRole(id, body.role);
+    }
+    updateApprovalStatus(id, body) {
+        return this.usersService.updateApprovalStatus(id, body.approvalStatus);
+    }
+    delete(id) {
+        return this.usersService.delete(id);
+    }
 };
 exports.UsersController = UsersController;
 __decorate([
@@ -78,6 +80,23 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)('me'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "getMe", null);
+__decorate([
+    (0, common_1.Patch)('me'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "updateMe", null);
 __decorate([
     (0, common_1.Post)(),
     (0, roles_decorator_1.Roles)(role_enum_1.Role.ADMIN, role_enum_1.Role.SUPERADMIN, role_enum_1.Role.PHARMACIST),
@@ -123,23 +142,6 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "delete", null);
-__decorate([
-    (0, common_1.Get)('me'),
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
-    __param(0, (0, common_1.Req)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
-], UsersController.prototype, "getMe", null);
-__decorate([
-    (0, common_1.Patch)('me'),
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
-    __param(0, (0, common_1.Req)()),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
-    __metadata("design:returntype", void 0)
-], UsersController.prototype, "updateMe", null);
 exports.UsersController = UsersController = __decorate([
     (0, common_1.Controller)('users'),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),

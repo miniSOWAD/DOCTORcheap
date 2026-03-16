@@ -10,12 +10,14 @@ export class ReportsController {
   constructor(private readonly reportsService: ReportsService) {}
 
   @Post()
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(Role.SUPERADMIN, Role.ADMIN, Role.SELLER, Role.USER, Role.DOCTOR, Role.PHARMACIST)
   create(@Body() body: any) {
     return this.reportsService.create(body);
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.ADMIN, Role.SUPERADMIN)
+  @Roles(Role.ADMIN, Role.SUPERADMIN, Role.SELLER)
   @Get()
   findAll() {
     return this.reportsService.findAll();

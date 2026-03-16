@@ -36,9 +36,19 @@ export class MedicinesService {
       dosage: item.dosage || '',
       imageUrl: item.imageUrl || '',
       pdfUrl: item.pdfUrl || '',
+      sellerId: item.sellerId || '',
+      sellerName: item.sellerName || '',
+      sellerUserId: item.sellerUserId || '',
+      sellerPhone: item.sellerPhone || '',
+      shopName: item.shopName || '',
+      companyOrBrand: item.companyOrBrand || '',
+      shopLocation: item.shopLocation || '',
+      shopContactInfo: item.shopContactInfo || '',
     }));
 
-    const inserted = await this.medicineModel.insertMany(docs, { ordered: false });
+    const inserted = await this.medicineModel.insertMany(docs, {
+      ordered: false,
+    });
 
     return {
       message: 'Medicines imported successfully',

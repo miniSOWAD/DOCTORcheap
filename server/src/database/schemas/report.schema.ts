@@ -8,6 +8,9 @@ export class Report {
   @Prop({ required: true })
   userName: string;
 
+  @Prop()
+  sellerId?: string;
+
   @Prop({ required: true })
   email: string;
 
@@ -19,6 +22,9 @@ export class Report {
 
   @Prop()
   fileUrl?: string;
+
+  @Prop({ default: 'general' })
+  type?: string;
 }
 
 export const ReportSchema = SchemaFactory.createForClass(Report);

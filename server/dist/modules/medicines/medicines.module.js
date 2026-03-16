@@ -12,12 +12,13 @@ const mongoose_1 = require("@nestjs/mongoose");
 const medicines_controller_1 = require("./medicines.controller");
 const medicines_service_1 = require("./medicines.service");
 const medicine_schema_1 = require("../../database/schemas/medicine.schema");
+const auth_module_1 = require("../auth/auth.module");
 let MedicinesModule = class MedicinesModule {
 };
 exports.MedicinesModule = MedicinesModule;
 exports.MedicinesModule = MedicinesModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: medicine_schema_1.Medicine.name, schema: medicine_schema_1.MedicineSchema }])],
+        imports: [mongoose_1.MongooseModule.forFeature([{ name: medicine_schema_1.Medicine.name, schema: medicine_schema_1.MedicineSchema }]), auth_module_1.AuthModule,],
         controllers: [medicines_controller_1.MedicinesController],
         providers: [medicines_service_1.MedicinesService],
         exports: [medicines_service_1.MedicinesService],

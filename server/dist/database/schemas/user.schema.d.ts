@@ -1,5 +1,4 @@
 import { HydratedDocument } from 'mongoose';
-import { Role } from '@/shared/enums/role.enum';
 export type UserDocument = HydratedDocument<User>;
 export type ApprovalStatus = 'approved' | 'pending' | 'rejected';
 export declare class User {
@@ -8,7 +7,7 @@ export declare class User {
     userId: string;
     phone: string;
     password: string;
-    role: Role;
+    role: string;
     profileImage?: string;
     nidImage?: string;
     licenseImage?: string;

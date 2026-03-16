@@ -19,6 +19,10 @@ __decorate([
     __metadata("design:type", String)
 ], Report.prototype, "userName", void 0);
 __decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Report.prototype, "sellerId", void 0);
+__decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
 ], Report.prototype, "email", void 0);
@@ -34,6 +38,10 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], Report.prototype, "fileUrl", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ default: 'general' }),
+    __metadata("design:type", String)
+], Report.prototype, "type", void 0);
 exports.Report = Report = __decorate([
     (0, mongoose_1.Schema)({ timestamps: true })
 ], Report);

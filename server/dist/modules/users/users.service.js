@@ -25,6 +25,12 @@ let UsersService = class UsersService {
     async findAll() {
         return this.userModel.find().select('-password').sort({ createdAt: -1 });
     }
+    async findById(id) {
+        const user = await this.userModel.findById(id).select('-password');
+        if (!user)
+            throw new common_1.NotFoundException('User not found');
+        return user;
+    }
     async create(payload) {
         const existingUserId = await this.userModel.findOne({ userId: payload.userId });
         if (existingUserId)
@@ -45,6 +51,30 @@ let UsersService = class UsersService {
         };
     }
     async update(id, payload) {
+        if (payload.userId) {
+            const existingUserId = await this.userModel.findOne({
+                userId: payload.userId,
+                _id: { $ne: id },
+            });
+            if (existingUserId)
+                throw new common_1.BadRequestException('User ID already exists');
+        }
+        if (payload.phone) {
+            const existingPhone = await this.userModel.findOne({
+                phone: payload.phone,
+                _id: { $ne: id },
+            });
+            if (existingPhone)
+                throw new common_1.BadRequestException('Phone already exists');
+        }
+        if (payload.email) {
+            const existingEmail = await this.userModel.findOne({
+                email: payload.email,
+                _id: { $ne: id },
+            });
+            if (existingEmail)
+                throw new common_1.BadRequestException('Email already exists');
+        }
         if (payload.password) {
             payload.password = await bcrypt.hash(payload.password, 10);
         }
@@ -76,12 +106,6 @@ let UsersService = class UsersService {
         if (!deleted)
             throw new common_1.NotFoundException('User not found');
         return { message: 'User deleted successfully' };
-    }
-    async findById(id) {
-        const user = await this.userModel.findById(id).select('-password');
-        if (!user)
-            throw new common_1.NotFoundException('User not found');
-        return user;
     }
 };
 exports.UsersService = UsersService;

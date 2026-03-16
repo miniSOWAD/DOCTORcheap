@@ -23,8 +23,12 @@ export class User {
   @Prop({ required: true })
   password: string;
 
-  @Prop({ enum: Role, default: Role.USER })
-  role: Role;
+  @Prop({
+    required: true,
+    enum: ['user', 'doctor', 'pharmacist', 'seller', 'admin', 'superadmin'],
+    default: 'user',
+  })
+  role: string;
 
   @Prop()
   profileImage?: string;

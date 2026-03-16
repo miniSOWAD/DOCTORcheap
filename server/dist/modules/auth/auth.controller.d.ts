@@ -26,7 +26,7 @@ export declare class AuthController {
             email: string;
             userId: string;
             phone: string;
-            role: import("../../shared/enums/role.enum").Role;
+            role: string;
             profileImage: string;
             approvalStatus: "approved";
         };
