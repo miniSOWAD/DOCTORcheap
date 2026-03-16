@@ -1,8 +1,7 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
+  "/(commonLayout)/disease/page": "app/(commonLayout)/disease/page.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/dashboard/diseases/page": "app/dashboard/diseases/page.js",
-  "/dashboard/sellers/page": "app/dashboard/sellers/page.js",
-  "/dashboard/medicines/page": "app/dashboard/medicines/page.js",
-  "/dashboard/pharmacist-profile/page": "app/dashboard/pharmacist-profile/page.js"
+  "/dashboard/users/page": "app/dashboard/users/page.js",
+  "/dashboard/doctors/page": "app/dashboard/doctors/page.js",
+  "/dashboard/pharmacists/page": "app/dashboard/pharmacists/page.js"
 }

@@ -5,6 +5,25 @@ export const getUsers = async () => {
   return data;
 };
 
+export const getMyProfile = async () => {
+  const { data } = await api.get('/users/me');
+  return data;
+};
+
+export const updateMyProfile = async (payload: {
+  name?: string;
+  email?: string;
+  phone?: string;
+  profileImage?: string;
+  shopName?: string;
+  companyOrBrand?: string;
+  shopLocation?: string;
+  shopContactInfo?: string;
+}) => {
+  const { data } = await api.patch('/users/me', payload);
+  return data;
+};
+
 export const createUser = async (payload: {
   name: string;
   userId: string;

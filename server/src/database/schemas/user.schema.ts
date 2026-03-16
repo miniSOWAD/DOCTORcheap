@@ -35,6 +35,18 @@ export class User {
   @Prop()
   licenseImage?: string;
 
+  @Prop()
+  shopName?: string;
+
+  @Prop()
+  companyOrBrand?: string;
+
+  @Prop()
+  shopLocation?: string;
+
+  @Prop()
+  shopContactInfo?: string;
+
   @Prop({
     type: String,
     enum: ['approved', 'pending', 'rejected'],

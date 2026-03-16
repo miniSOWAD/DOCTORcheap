@@ -12,4 +12,13 @@ export interface IMedicine {
   sideEffects?: string[];
   imageUrl?: string;
   pdfUrl?: string;
+
+  sellerId?: string;
+  sellerName?: string;
+  sellerUserId?: string;
+  sellerPhone?: string;
+  shopName?: string;
+  companyOrBrand?: string;
+  shopLocation?: string;
+  shopContactInfo?: string;
 }

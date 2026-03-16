@@ -52,6 +52,22 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "licenseImage", void 0);
 __decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], User.prototype, "shopName", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], User.prototype, "companyOrBrand", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], User.prototype, "shopLocation", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], User.prototype, "shopContactInfo", void 0);
+__decorate([
     (0, mongoose_1.Prop)({
         type: String,
         enum: ['approved', 'pending', 'rejected'],

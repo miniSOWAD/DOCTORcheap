@@ -62,6 +62,38 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], Medicine.prototype, "pdfUrl", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Medicine.prototype, "sellerId", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Medicine.prototype, "sellerName", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Medicine.prototype, "sellerUserId", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Medicine.prototype, "sellerPhone", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Medicine.prototype, "shopName", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Medicine.prototype, "companyOrBrand", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Medicine.prototype, "shopLocation", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Medicine.prototype, "shopContactInfo", void 0);
 exports.Medicine = Medicine = __decorate([
     (0, mongoose_1.Schema)({ timestamps: true })
 ], Medicine);

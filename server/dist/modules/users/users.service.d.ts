@@ -64,4 +64,15 @@ export declare class UsersService {
     delete(id: string): Promise<{
         message: string;
     }>;
+    findById(id: string): Promise<import("mongoose").Document<unknown, {}, import("mongoose").Document<unknown, {}, User, {}, {}> & User & {
+        _id: import("mongoose").Types.ObjectId;
+    } & {
+        __v: number;
+    }, {}, {}> & import("mongoose").Document<unknown, {}, User, {}, {}> & User & {
+        _id: import("mongoose").Types.ObjectId;
+    } & {
+        __v: number;
+    } & Required<{
+        _id: import("mongoose").Types.ObjectId;
+    }>>;
 }

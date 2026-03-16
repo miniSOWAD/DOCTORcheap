@@ -40,6 +40,30 @@ export class Medicine {
 
   @Prop()
   pdfUrl?: string;
-}
+
+  @Prop()
+  sellerId?: string;
+
+  @Prop()
+  sellerName?: string;
+
+  @Prop()
+  sellerUserId?: string;
+
+  @Prop()
+  sellerPhone?: string;
+
+  @Prop()
+  shopName?: string;
+
+  @Prop()
+  companyOrBrand?: string;
+
+  @Prop()
+  shopLocation?: string;
+
+  @Prop()
+  shopContactInfo?: string;
+  }
 
 export const MedicineSchema = SchemaFactory.createForClass(Medicine);

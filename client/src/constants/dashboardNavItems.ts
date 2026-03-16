@@ -35,6 +35,13 @@ export const dashboardNavItems = [
     roles: ['pharmacist'],
   },
   {
+    label: 'Seller Dashboard',
+    href: '/dashboard/seller',
+    icon: LayoutDashboard,
+    description: 'Seller overview',
+    roles: ['seller'],
+  },
+  {
     label: 'Users',
     href: '/dashboard/users',
     icon: Users,
@@ -98,6 +105,13 @@ export const dashboardNavItems = [
     roles: ['superadmin'],
   },
   {
+    label: 'Selling Issues',
+    href: '/dashboard/selling-issues',
+    icon: ClipboardList,
+    description: 'Submit issues',
+    roles: ['seller'],
+  },
+  {
     label: 'Profile Update',
     href: '/dashboard/doctor-profile',
     icon: UserCog,
@@ -110,5 +124,12 @@ export const dashboardNavItems = [
     icon: UserCog,
     description: 'Update pharmacist profile',
     roles: ['pharmacist'],
+  },
+  {
+    label: 'Profile Update',
+    href: '/dashboard/seller-profile',
+    icon: UserCog,
+    description: 'Update seller profile',
+    roles: ['seller'],
   },
 ];

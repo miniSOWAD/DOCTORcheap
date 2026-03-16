@@ -13,6 +13,14 @@ export declare class Medicine {
     sideEffects?: string[];
     imageUrl?: string;
     pdfUrl?: string;
+    sellerId?: string;
+    sellerName?: string;
+    sellerUserId?: string;
+    sellerPhone?: string;
+    shopName?: string;
+    companyOrBrand?: string;
+    shopLocation?: string;
+    shopContactInfo?: string;
 }
 export declare const MedicineSchema: import("mongoose").Schema<Medicine, import("mongoose").Model<Medicine, any, any, any, import("mongoose").Document<unknown, any, Medicine, any, {}> & Medicine & {
     _id: import("mongoose").Types.ObjectId;

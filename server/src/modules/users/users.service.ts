@@ -75,4 +75,10 @@ export class UsersService {
     if (!deleted) throw new NotFoundException('User not found');
     return { message: 'User deleted successfully' };
   }
+
+  async findById(id: string) {
+    const user = await this.userModel.findById(id).select('-password');
+    if (!user) throw new NotFoundException('User not found');
+    return user;
+  }
 }

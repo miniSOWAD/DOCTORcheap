@@ -52,6 +52,23 @@ let UsersController = class UsersController {
     delete(id) {
         return this.usersService.delete(id);
     }
+    getMe(req) {
+        return this.usersService.findById(req.user.userId);
+    }
+    updateMe(req, body) {
+        const allowedFields = [
+            'name',
+            'email',
+            'phone',
+            'profileImage',
+            'shopName',
+            'companyOrBrand',
+            'shopLocation',
+            'shopContactInfo',
+        ];
+        const filteredBody = Object.fromEntries(Object.entries(body).filter(([key]) => allowedFields.includes(key)));
+        return this.usersService.update(req.user.userId, filteredBody);
+    }
 };
 exports.UsersController = UsersController;
 __decorate([
@@ -106,6 +123,23 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "delete", null);
+__decorate([
+    (0, common_1.Get)('me'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "getMe", null);
+__decorate([
+    (0, common_1.Patch)('me'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "updateMe", null);
 exports.UsersController = UsersController = __decorate([
     (0, common_1.Controller)('users'),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),

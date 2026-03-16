@@ -71,4 +71,31 @@ export class UsersController {
   delete(@Param('id') id: string) {
     return this.usersService.delete(id);
   }
+
+  @Get('me')
+  @UseGuards(JwtAuthGuard)
+  getMe(@Req() req: any) {
+    return this.usersService.findById(req.user.userId);
+  }
+
+  @Patch('me')
+  @UseGuards(JwtAuthGuard)
+  updateMe(@Req() req: any, @Body() body: any) {
+    const allowedFields = [
+      'name',
+      'email',
+      'phone',
+      'profileImage',
+      'shopName',
+      'companyOrBrand',
+      'shopLocation',
+      'shopContactInfo',
+    ];
+
+    const filteredBody = Object.fromEntries(
+      Object.entries(body).filter(([key]) => allowedFields.includes(key)),
+    );
+
+    return this.usersService.update(req.user.userId, filteredBody);
+  }
 }

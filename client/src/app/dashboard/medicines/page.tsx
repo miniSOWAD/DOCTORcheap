@@ -13,6 +13,7 @@ import {
 } from '@/services/medicine.service';
 import { uploadFile } from '@/services/upload.service';
 import { IMedicine } from '@/types/medicine';
+import { getMyProfile } from '@/services/user.service';
 
 export default function DashboardMedicinesPage() {
   const { isReady, user } = useRoleGuard([
@@ -20,12 +21,14 @@ export default function DashboardMedicinesPage() {
     'superadmin',
     'seller',
     'pharmacist',
+    'doctor',
   ]);
 
   const [items, setItems] = useState<IMedicine[]>([]);
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [importing, setImporting] = useState(false);
+  const [myProfile, setMyProfile] = useState<any>(null);
 
   const [form, setForm] = useState<IMedicine>({
     name: '',
@@ -42,26 +45,35 @@ export default function DashboardMedicinesPage() {
     pdfUrl: '',
   });
 
-  const canManualCreate = ['superadmin', 'pharmacist'].includes(user?.role || '');
-  const canDelete = ['superadmin', 'pharmacist'].includes(user?.role || '');
-  const canBulkImport = ['admin', 'seller', 'pharmacist', 'superadmin'].includes(
-    user?.role || '',
-  );
-  const canEdit = [
-    'admin',
-    'superadmin',
-    'seller',
-    'pharmacist',
-    'doctor',
-  ].includes(user?.role || '');
+  const isSuperAdmin = user?.role === 'superadmin';
+  const isPharmacist = user?.role === 'pharmacist';
+  const isSeller = user?.role === 'seller';
+  const isDoctor = user?.role === 'doctor';
+  const isAdmin = user?.role === 'admin';
 
-  const doctorEditOnlyUsedFor = user?.role === 'doctor';
+  const canManualCreate = isSuperAdmin || isPharmacist || isSeller;
+  const canDelete = isSuperAdmin || isPharmacist || isSeller;
+  const canBulkImport = isSuperAdmin || isAdmin || isPharmacist || isSeller;
+  const canEdit = isSuperAdmin || isAdmin || isPharmacist || isSeller || isDoctor;
+  const doctorEditOnlyUsedFor = isDoctor;
 
   const loadData = async () => {
     try {
       setLoading(true);
-      const data = await getMedicines();
-      setItems(Array.isArray(data) ? data : []);
+
+      const [medicines, profile] = await Promise.all([
+        getMedicines(),
+        ['seller'].includes(user?.role || '') ? getMyProfile().catch(() => null) : Promise.resolve(null),
+      ]);
+
+      let data = Array.isArray(medicines) ? medicines : [];
+
+      if (isSeller && profile?._id) {
+        data = data.filter((item: any) => item.sellerId === profile._id);
+      }
+
+      setItems(data);
+      setMyProfile(profile);
     } catch (error) {
       console.error('Medicine fetch failed:', error);
       setItems([]);
@@ -110,24 +122,17 @@ export default function DashboardMedicinesPage() {
     const medicines: IMedicine[] = [];
 
     for (let i = 0; i < lines.length; i += 6) {
-      const name = lines[i];
-      const pricePerPiece = Number(lines[i + 1]) || 0;
-      const pricePerUnit = Number(lines[i + 2]) || 0;
-      const ingredients = lines[i + 3];
-      const usedForRaw = lines[i + 4];
-      const sideEffectsRaw = lines[i + 5];
-
       medicines.push({
-        name,
-        price: pricePerPiece,
-        unitPrice: pricePerUnit,
-        ingredients,
-        usage: ingredients,
-        usedFor: usedForRaw
+        name: lines[i],
+        price: Number(lines[i + 1]) || 0,
+        unitPrice: Number(lines[i + 2]) || 0,
+        ingredients: lines[i + 3],
+        usage: lines[i + 3],
+        usedFor: lines[i + 4]
           .split(',')
           .map((v) => v.trim())
           .filter(Boolean),
-        sideEffects: sideEffectsRaw
+        sideEffects: lines[i + 5]
           .split(',')
           .map((v) => v.trim())
           .filter(Boolean),
@@ -135,6 +140,22 @@ export default function DashboardMedicinesPage() {
     }
 
     return medicines;
+  };
+
+  const attachSellerInfo = (payload: IMedicine): IMedicine => {
+    if (!isSeller || !myProfile) return payload;
+
+    return {
+      ...payload,
+      sellerId: myProfile._id,
+      sellerName: myProfile.name,
+      sellerUserId: myProfile.userId,
+      sellerPhone: myProfile.phone,
+      shopName: myProfile.shopName,
+      companyOrBrand: myProfile.companyOrBrand,
+      shopLocation: myProfile.shopLocation,
+      shopContactInfo: myProfile.shopContactInfo,
+    };
   };
 
   const handleTxtImport = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -148,12 +169,16 @@ export default function DashboardMedicinesPage() {
 
     try {
       setImporting(true);
-      const medicines = await parseMedicineTxt(file);
+      let medicines = await parseMedicineTxt(file);
+
+      if (isSeller && myProfile) {
+        medicines = medicines.map((m) => attachSellerInfo(m));
+      }
+
       const result = await bulkImportMedicines({ medicines });
       alert(result.message || 'Medicines imported successfully');
       loadData();
     } catch (error: any) {
-      console.error(error);
       alert(error?.response?.data?.message || error?.message || 'Import failed');
     } finally {
       setImporting(false);
@@ -167,7 +192,7 @@ export default function DashboardMedicinesPage() {
     <div className="space-y-6">
       <DashboardHero
         title="Manage Medicines"
-        description="Edit medicine records, and upload bulk medicine data through TXT files using your 6-line format."
+        description="Manage medicine records and bulk import listings."
       />
 
       {canBulkImport && (
@@ -176,8 +201,6 @@ export default function DashboardMedicinesPage() {
             Bulk Import Medicines from TXT
           </h2>
           <p className="mb-4 text-sm leading-7 text-slate-600">
-            TXT format must follow 6 lines per medicine:
-            <br />
             1. Medicine name
             <br />
             2. Price per piece
@@ -206,75 +229,28 @@ export default function DashboardMedicinesPage() {
         </div>
       )}
 
-      {canManualCreate && (
+      {canManualCreate && !doctorEditOnlyUsedFor && (
         <div className="rounded-[28px] border border-emerald-100 bg-white p-6 shadow-md">
           <h2 className="mb-4 text-xl font-semibold text-slate-900">
             {editingId ? 'Edit Medicine' : 'Add Medicine'}
           </h2>
 
           <div className="grid gap-4 md:grid-cols-2">
-            <input
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              placeholder="Medicine name"
-              className="rounded-2xl border border-emerald-100 px-4 py-3"
-            />
-            <input
-              value={form.genericName || ''}
-              onChange={(e) => setForm({ ...form, genericName: e.target.value })}
-              placeholder="Generic name"
-              className="rounded-2xl border border-emerald-100 px-4 py-3"
-            />
-            <input
-              value={form.brand || ''}
-              onChange={(e) => setForm({ ...form, brand: e.target.value })}
-              placeholder="Brand"
-              className="rounded-2xl border border-emerald-100 px-4 py-3"
-            />
-            <input
-              value={form.dosage || ''}
-              onChange={(e) => setForm({ ...form, dosage: e.target.value })}
-              placeholder="Dosage"
-              className="rounded-2xl border border-emerald-100 px-4 py-3"
-            />
-            <input
-              type="number"
-              value={form.price}
-              onChange={(e) => setForm({ ...form, price: Number(e.target.value) })}
-              placeholder="Price per piece"
-              className="rounded-2xl border border-emerald-100 px-4 py-3"
-            />
-            <input
-              type="number"
-              value={form.unitPrice || 0}
-              onChange={(e) =>
-                setForm({ ...form, unitPrice: Number(e.target.value) })
-              }
-              placeholder="Price per unit"
-              className="rounded-2xl border border-emerald-100 px-4 py-3"
-            />
-            <input
-              value={form.ingredients || ''}
-              onChange={(e) => setForm({ ...form, ingredients: e.target.value })}
-              placeholder="Ingredients"
-              className="rounded-2xl border border-emerald-100 px-4 py-3"
-            />
-            <input
-              value={form.usage || ''}
-              onChange={(e) => setForm({ ...form, usage: e.target.value })}
-              placeholder="Usage"
-              className="rounded-2xl border border-emerald-100 px-4 py-3"
-            />
+            <input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Medicine name" className="rounded-2xl border border-emerald-100 px-4 py-3" />
+            <input value={form.genericName || ''} onChange={(e) => setForm({ ...form, genericName: e.target.value })} placeholder="Generic name" className="rounded-2xl border border-emerald-100 px-4 py-3" />
+            <input value={form.brand || ''} onChange={(e) => setForm({ ...form, brand: e.target.value })} placeholder="Brand" className="rounded-2xl border border-emerald-100 px-4 py-3" />
+            <input value={form.dosage || ''} onChange={(e) => setForm({ ...form, dosage: e.target.value })} placeholder="Dosage" className="rounded-2xl border border-emerald-100 px-4 py-3" />
+            <input type="number" value={form.price} onChange={(e) => setForm({ ...form, price: Number(e.target.value) })} placeholder="Price per piece" className="rounded-2xl border border-emerald-100 px-4 py-3" />
+            <input type="number" value={form.unitPrice || 0} onChange={(e) => setForm({ ...form, unitPrice: Number(e.target.value) })} placeholder="Price per unit" className="rounded-2xl border border-emerald-100 px-4 py-3" />
+            <input value={form.ingredients || ''} onChange={(e) => setForm({ ...form, ingredients: e.target.value })} placeholder="Ingredients" className="rounded-2xl border border-emerald-100 px-4 py-3" />
+            <input value={form.usage || ''} onChange={(e) => setForm({ ...form, usage: e.target.value })} placeholder="Usage" className="rounded-2xl border border-emerald-100 px-4 py-3" />
             <input
               placeholder="Used for (comma separated)"
               value={form.usedFor?.join(', ') || ''}
               onChange={(e) =>
                 setForm({
                   ...form,
-                  usedFor: e.target.value
-                    .split(',')
-                    .map((v) => v.trim())
-                    .filter(Boolean),
+                  usedFor: e.target.value.split(',').map((v) => v.trim()).filter(Boolean),
                 })
               }
               className="rounded-2xl border border-emerald-100 px-4 py-3"
@@ -285,19 +261,14 @@ export default function DashboardMedicinesPage() {
               onChange={(e) =>
                 setForm({
                   ...form,
-                  sideEffects: e.target.value
-                    .split(',')
-                    .map((v) => v.trim())
-                    .filter(Boolean),
+                  sideEffects: e.target.value.split(',').map((v) => v.trim()).filter(Boolean),
                 })
               }
               className="rounded-2xl border border-emerald-100 px-4 py-3"
             />
 
             <div className="rounded-2xl border border-emerald-100 px-4 py-3">
-              <label className="mb-2 block text-sm font-semibold text-slate-700">
-                Medicine Image
-              </label>
+              <label className="mb-2 block text-sm font-semibold text-slate-700">Medicine Image</label>
               <input
                 type="file"
                 onChange={async (e) => {
@@ -310,9 +281,7 @@ export default function DashboardMedicinesPage() {
             </div>
 
             <div className="rounded-2xl border border-emerald-100 px-4 py-3">
-              <label className="mb-2 block text-sm font-semibold text-slate-700">
-                Medicine PDF
-              </label>
+              <label className="mb-2 block text-sm font-semibold text-slate-700">Medicine PDF</label>
               <input
                 type="file"
                 onChange={async (e) => {
@@ -328,8 +297,14 @@ export default function DashboardMedicinesPage() {
           <div className="mt-4 flex gap-3">
             <button
               onClick={async () => {
-                if (editingId) await updateMedicine(editingId, form);
-                else await createMedicine(form);
+                let payload = { ...form };
+
+                if (isSeller) {
+                  payload = attachSellerInfo(payload);
+                }
+
+                if (editingId) await updateMedicine(editingId, payload);
+                else await createMedicine(payload);
 
                 resetForm();
                 loadData();
@@ -351,10 +326,50 @@ export default function DashboardMedicinesPage() {
         </div>
       )}
 
-      <TableShell
-        title="Medicine Records"
-        subtitle="Current medicine entries in database"
-      >
+      {doctorEditOnlyUsedFor && (
+        <div className="rounded-[28px] border border-emerald-100 bg-white p-6 shadow-md">
+          <h2 className="mb-4 text-xl font-semibold text-slate-900">
+            Edit Medicine Usage
+          </h2>
+
+          <input
+            placeholder="Used for (comma separated)"
+            value={form.usedFor?.join(', ') || ''}
+            onChange={(e) =>
+              setForm({
+                ...form,
+                usedFor: e.target.value.split(',').map((v) => v.trim()).filter(Boolean),
+              })
+            }
+            className="w-full rounded-2xl border border-emerald-100 px-4 py-3"
+          />
+
+          <div className="mt-4 flex gap-3">
+            <button
+              onClick={async () => {
+                if (!editingId) return;
+                await updateMedicine(editingId, { usedFor: form.usedFor });
+                resetForm();
+                loadData();
+              }}
+              className="rounded-2xl bg-gradient-to-r from-emerald-400 to-pink-300 px-5 py-3 text-sm font-semibold text-white"
+            >
+              Update Used For
+            </button>
+
+            {editingId && (
+              <button
+                onClick={resetForm}
+                className="rounded-2xl border border-emerald-100 px-5 py-3 text-sm font-semibold text-emerald-700"
+              >
+                Cancel
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
+      <TableShell title="Medicine Records" subtitle="Current medicine entries in database">
         {loading ? (
           <div className="p-6 text-slate-500">Loading medicines...</div>
         ) : (
@@ -362,6 +377,7 @@ export default function DashboardMedicinesPage() {
             <thead className="bg-emerald-50 text-sm text-slate-700">
               <tr>
                 <th className="px-6 py-4">Name</th>
+                <th className="px-6 py-4">Shop</th>
                 <th className="px-6 py-4">Brand</th>
                 <th className="px-6 py-4">Piece Price</th>
                 <th className="px-6 py-4">Unit Price</th>
@@ -373,42 +389,25 @@ export default function DashboardMedicinesPage() {
             <tbody>
               {items.map((item) => (
                 <tr key={item._id} className="border-t border-emerald-50">
-                  <td className="px-6 py-4 font-medium text-slate-800">
-                    {item.name}
-                  </td>
-                  <td className="px-6 py-4 text-slate-600">
-                    {item.brand || 'N/A'}
-                  </td>
+                  <td className="px-6 py-4 font-medium text-slate-800">{item.name}</td>
+                  <td className="px-6 py-4 text-slate-600">{item.shopName || 'N/A'}</td>
+                  <td className="px-6 py-4 text-slate-600">{item.brand || 'N/A'}</td>
                   <td className="px-6 py-4 text-slate-600">৳{item.price}</td>
-                  <td className="px-6 py-4 text-slate-600">
-                    ৳{item.unitPrice || 0}
-                  </td>
-                  <td className="px-6 py-4 text-slate-600">
-                    {item.usedFor?.join(', ') || 'N/A'}
-                  </td>
+                  <td className="px-6 py-4 text-slate-600">৳{item.unitPrice || 0}</td>
+                  <td className="px-6 py-4 text-slate-600">{item.usedFor?.join(', ') || 'N/A'}</td>
                   <td className="px-6 py-4">
                     <div className="flex gap-2">
                       {canEdit && (
                         <button
                           onClick={() => {
-                            setEditingId(item._id || null);
                             if (doctorEditOnlyUsedFor) {
+                              setEditingId(item._id || null);
                               setForm({
-                                ...item,
-                                name: item.name,
-                                genericName: item.genericName,
-                                brand: item.brand,
-                                dosage: item.dosage,
-                                price: item.price,
-                                unitPrice: item.unitPrice,
-                                ingredients: item.ingredients,
-                                usage: item.usage,
+                                ...form,
                                 usedFor: item.usedFor || [],
-                                sideEffects: item.sideEffects || [],
-                                imageUrl: item.imageUrl,
-                                pdfUrl: item.pdfUrl,
                               });
                             } else {
+                              setEditingId(item._id || null);
                               setForm(item);
                             }
                           }}

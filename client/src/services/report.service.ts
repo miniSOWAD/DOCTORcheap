@@ -15,3 +15,19 @@ export const deleteReport = async (id: string) => {
   const { data } = await api.delete(`/reports/${id}`);
   return data;
 };
+
+export const createSellerIssue = async (payload: {
+  subject: string;
+  message: string;
+  sellerId?: string;
+  userName?: string;
+  type: string;
+}) => {
+  const { data } = await api.post('/reports', payload);
+  return data;
+};
+
+export const getSellerIssues = async () => {
+  const { data } = await api.get('/reports');
+  return data;
+};
