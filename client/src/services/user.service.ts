@@ -34,6 +34,11 @@ export const createUser = async (payload: {
   approvalStatus?: 'approved' | 'pending' | 'rejected';
   nidImage?: string;
   licenseImage?: string;
+  profileImage?: string;
+  shopName?: string;
+  companyOrBrand?: string;
+  shopLocation?: string;
+  shopContactInfo?: string;
 }) => {
   const { data } = await api.post('/users', payload);
   return data;
@@ -51,6 +56,11 @@ export const updateUser = async (
     approvalStatus?: 'approved' | 'pending' | 'rejected';
     nidImage?: string;
     licenseImage?: string;
+    profileImage?: string;
+    shopName?: string;
+    companyOrBrand?: string;
+    shopLocation?: string;
+    shopContactInfo?: string;
   }>,
 ) => {
   const { data } = await api.patch(`/users/${id}`, payload);
