@@ -1,19 +1,13 @@
-# 🧬 DOCTORcheap
+![banner](https://capsule-render.vercel.app/api?type=waving&height=250&color=0:00c6ff,100:0072ff&text=DOCTORcheap&fontSize=60&fontAlign=50&fontAlignY=40&animation=fadeIn&desc=Next%20Generation%20Healthcare%20Platform&descAlignY=60)
 
-```{=html}
-<p align="center">
-```
-`<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0ea5e9,50:22c55e,100:f472b6&height=220&section=header&text=DOCTORcheap&fontSize=50&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Online%20Doctor%20%26%20Medicine%20Intelligence%20Platform&descAlignY=60" />`{=html}
-```{=html}
-</p>
-```
-```{=html}
-<p align="center">
-```
-`<img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=22&duration=3500&pause=800&color=22C55E&center=true&vCenter=true&width=600&lines=Next+Generation+Healthcare+Platform;Doctor+Pharmacist+Seller+Ecosystem;Medical+Knowledge+Management+System;Built+with+Next.js+Node+and+MongoDB" />`{=html}
-```{=html}
-</p>
-```
+![typing](https://readme-typing-svg.herokuapp.com?font=Orbitron&size=24&duration=3000&color=22C55E&center=true&vCenter=true&width=900&lines=Doctor+Pharmacist+Seller+Healthcare+Platform;Built+with+Next.js+Node.js+MongoDB)
+
+---
+
+### 🌐 Live Demo
+### https://doctorcheap.netlify.app/
+
+For the code contact me or inbox me
 
 ------------------------------------------------------------------------
 
