@@ -25,6 +25,27 @@ export class Nutrition {
 
   @Prop()
   notes?: string;
+
+  @Prop({ required: true })
+  name: string;
+
+  @Prop()
+  imageUrl: string;
+
+  @Prop({ type: [String], default: [] })
+  ingredients: string[];
+
+  @Prop()
+  benefits: string;
+
+  @Prop()
+  origin: string;
+
+  @Prop()
+  popularIn: string;
+
+  @Prop({ type: [String], default: [] })
+  usedForDiseases: string[];
 }
 
 export const NutritionSchema = SchemaFactory.createForClass(Nutrition);

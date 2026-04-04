@@ -2,10 +2,10 @@
   "/_not-found/page": "app/_not-found/page.js",
   "/icon.png/route": "app/icon.png/route.js",
   "/(commonLayout)/page": "app/(commonLayout)/page.js",
-  "/(commonLayout)/disease/page": "app/(commonLayout)/disease/page.js",
+  "/(commonLayout)/doctor/page": "app/(commonLayout)/doctor/page.js",
   "/(commonLayout)/food-nutrition/page": "app/(commonLayout)/food-nutrition/page.js",
+  "/(commonLayout)/disease/page": "app/(commonLayout)/disease/page.js",
   "/(commonLayout)/medicine/page": "app/(commonLayout)/medicine/page.js",
   "/(commonLayout)/about-us/page": "app/(commonLayout)/about-us/page.js",
-  "/(commonLayout)/contact-us/page": "app/(commonLayout)/contact-us/page.js",
-  "/(commonLayout)/doctor/page": "app/(commonLayout)/doctor/page.js"
+  "/(commonLayout)/contact-us/page": "app/(commonLayout)/contact-us/page.js"
 }
