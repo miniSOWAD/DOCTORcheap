@@ -6,4 +6,5 @@ export interface IDoctor {
   experience: number;
   consultationFee?: number;
   about?: string;
+  photo?: string;
 }
