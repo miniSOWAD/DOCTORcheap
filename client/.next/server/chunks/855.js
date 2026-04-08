@@ -1,0 +1,81 @@
+exports.id=855,exports.ids=[855],exports.modules={42367:(e,a,r)=>{Promise.resolve().then(r.bind(r,66598)),Promise.resolve().then(r.bind(r,64685))},21153:(e,a,r)=>{"use strict";r.d(a,{Z:()=>t});/**
+ * @license lucide-react v0.453.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let t=(0,r(62881).Z)("Apple",[["path",{d:"M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z",key:"3s7exb"}],["path",{d:"M10 2c1 .5 2 2 2 5",key:"fcco2y"}]])},6507:(e,a,r)=>{"use strict";r.d(a,{Z:()=>t});/**
+ * @license lucide-react v0.453.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let t=(0,r(62881).Z)("Bell",[["path",{d:"M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9",key:"1qo2s2"}],["path",{d:"M10.3 21a1.94 1.94 0 0 0 3.4 0",key:"qgo35s"}]])},16662:(e,a,r)=>{"use strict";r.d(a,{Z:()=>t});/**
+ * @license lucide-react v0.453.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let t=(0,r(62881).Z)("BriefcaseMedical",[["path",{d:"M12 11v4",key:"a6ujw6"}],["path",{d:"M14 13h-4",key:"1pl8zg"}],["path",{d:"M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2",key:"1ksdt3"}],["path",{d:"M18 6v14",key:"1mu4gy"}],["path",{d:"M6 6v14",key:"1s15cj"}],["rect",{width:"20",height:"14",x:"2",y:"6",rx:"2",key:"i6l2r4"}]])},11890:(e,a,r)=>{"use strict";r.d(a,{Z:()=>t});/**
+ * @license lucide-react v0.453.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let t=(0,r(62881).Z)("ChevronLeft",[["path",{d:"m15 18-6-6 6-6",key:"1wnfg3"}]])},36283:(e,a,r)=>{"use strict";r.d(a,{Z:()=>t});/**
+ * @license lucide-react v0.453.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let t=(0,r(62881).Z)("FileText",[["path",{d:"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z",key:"1rqfz7"}],["path",{d:"M14 2v4a2 2 0 0 0 2 2h4",key:"tnqrlb"}],["path",{d:"M10 9H8",key:"b1mrlr"}],["path",{d:"M16 13H8",key:"t4e002"}],["path",{d:"M16 17H8",key:"z1uh3a"}]])},24319:(e,a,r)=>{"use strict";r.d(a,{Z:()=>t});/**
+ * @license lucide-react v0.453.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let t=(0,r(62881).Z)("LayoutDashboard",[["rect",{width:"7",height:"9",x:"3",y:"3",rx:"1",key:"10lvy0"}],["rect",{width:"7",height:"5",x:"14",y:"3",rx:"1",key:"16une8"}],["rect",{width:"7",height:"9",x:"14",y:"12",rx:"1",key:"1hutg5"}],["rect",{width:"7",height:"5",x:"3",y:"16",rx:"1",key:"ldoo1y"}]])},71810:(e,a,r)=>{"use strict";r.d(a,{Z:()=>t});/**
+ * @license lucide-react v0.453.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let t=(0,r(62881).Z)("LogOut",[["path",{d:"M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4",key:"1uf3rs"}],["polyline",{points:"16 17 21 12 16 7",key:"1gabdz"}],["line",{x1:"21",x2:"9",y1:"12",y2:"12",key:"1uyos4"}]])},90748:(e,a,r)=>{"use strict";r.d(a,{Z:()=>t});/**
+ * @license lucide-react v0.453.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let t=(0,r(62881).Z)("Menu",[["line",{x1:"4",x2:"20",y1:"12",y2:"12",key:"1e0a9i"}],["line",{x1:"4",x2:"20",y1:"6",y2:"6",key:"1owob3"}],["line",{x1:"4",x2:"20",y1:"18",y2:"18",key:"yk5zj1"}]])},36800:(e,a,r)=>{"use strict";r.d(a,{Z:()=>t});/**
+ * @license lucide-react v0.453.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let t=(0,r(62881).Z)("Pill",[["path",{d:"m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z",key:"wa1lgi"}],["path",{d:"m8.5 8.5 7 7",key:"rvfmvr"}]])},88307:(e,a,r)=>{"use strict";r.d(a,{Z:()=>t});/**
+ * @license lucide-react v0.453.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let t=(0,r(62881).Z)("Search",[["circle",{cx:"11",cy:"11",r:"8",key:"4ej97u"}],["path",{d:"m21 21-4.3-4.3",key:"1qie3q"}]])},87815:(e,a,r)=>{"use strict";r.d(a,{Z:()=>t});/**
+ * @license lucide-react v0.453.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let t=(0,r(62881).Z)("Stethoscope",[["path",{d:"M11 2v2",key:"1539x4"}],["path",{d:"M5 2v2",key:"1yf1q8"}],["path",{d:"M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1",key:"rb5t3r"}],["path",{d:"M8 15a6 6 0 0 0 12 0v-3",key:"x18d4x"}],["circle",{cx:"20",cy:"10",r:"2",key:"ts1r5v"}]])},79635:(e,a,r)=>{"use strict";r.d(a,{Z:()=>t});/**
+ * @license lucide-react v0.453.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let t=(0,r(62881).Z)("User",[["path",{d:"M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2",key:"975kel"}],["circle",{cx:"12",cy:"7",r:"4",key:"17ys0d"}]])},64685:(e,a,r)=>{"use strict";r.d(a,{default:()=>N});var t=r(10326),s=r(90434),i=r(35047),d=r(30058),l=r(62881);/**
+ * @license lucide-react v0.453.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let o=(0,l.Z)("Crown",[["path",{d:"M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z",key:"1vdc57"}],["path",{d:"M5 21h14",key:"11awu3"}]]);var n=r(60763),c=r(90748),h=r(11890),p=r(1572),m=r(24319);/**
+ * @license lucide-react v0.453.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let x=(0,l.Z)("Users",[["path",{d:"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2",key:"1yyitq"}],["circle",{cx:"9",cy:"7",r:"4",key:"nufk8"}],["path",{d:"M22 21v-2a4 4 0 0 0-3-3.87",key:"kshegd"}],["path",{d:"M16 3.13a4 4 0 0 1 0 7.75",key:"1da9ce"}]]);var y=r(36283),u=r(87815),b=r(16662);/**
+ * @license lucide-react v0.453.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let f=(0,l.Z)("Store",[["path",{d:"m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7",key:"ztvudi"}],["path",{d:"M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8",key:"1b2hhj"}],["path",{d:"M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4",key:"2ebpfo"}],["path",{d:"M2 7h20",key:"1fcdvo"}],["path",{d:"M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7",key:"6c3vgh"}]]);var v=r(36800),k=r(21153);/**
+ * @license lucide-react v0.453.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let g=(0,l.Z)("ClipboardList",[["rect",{width:"8",height:"4",x:"8",y:"2",rx:"1",ry:"1",key:"tgr4d6"}],["path",{d:"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2",key:"116196"}],["path",{d:"M12 11h4",key:"1jrz19"}],["path",{d:"M12 16h4",key:"n85exb"}],["path",{d:"M8 11h.01",key:"1dfujw"}],["path",{d:"M8 16h.01",key:"18s6g9"}]]),j=(0,l.Z)("UserCog",[["circle",{cx:"18",cy:"15",r:"3",key:"gjjjvw"}],["circle",{cx:"9",cy:"7",r:"4",key:"nufk8"}],["path",{d:"M10 15H6a4 4 0 0 0-4 4v2",key:"1nfge6"}],["path",{d:"m21.7 16.4-.9-.3",key:"12j9ji"}],["path",{d:"m15.2 13.9-.9-.3",key:"1fdjdi"}],["path",{d:"m16.6 18.7.3-.9",key:"heedtr"}],["path",{d:"m19.1 12.2.3-.9",key:"1af3ki"}],["path",{d:"m19.6 18.7-.4-1",key:"1x9vze"}],["path",{d:"m16.8 12.3-.4-1",key:"vqeiwj"}],["path",{d:"m14.3 16.6 1-.4",key:"1qlj63"}],["path",{d:"m20.7 13.8 1-.4",key:"1v5t8k"}]]),w=[{label:"Overview",href:"/dashboard",icon:m.Z,description:"Dashboard summary",roles:["admin","superadmin","seller","pharmacist","user"]},{label:"Doctor Dashboard",href:"/dashboard/doctor",icon:m.Z,description:"Doctor overview",roles:["doctor"]},{label:"Pharmacist Dashboard",href:"/dashboard/pharmacist",icon:m.Z,description:"Pharmacist overview",roles:["pharmacist"]},{label:"Seller Dashboard",href:"/dashboard/seller",icon:m.Z,description:"Seller overview",roles:["seller"]},{label:"Users",href:"/dashboard/users",icon:x,description:"Manage users",roles:["admin","superadmin"]},{label:"Diseases",href:"/dashboard/diseases",icon:y.Z,description:"Disease records",roles:["admin","superadmin","doctor","pharmacist"]},{label:"Doctors",href:"/dashboard/doctors",icon:u.Z,description:"Doctor directory",roles:["admin","superadmin"]},{label:"Pharmacists",href:"/dashboard/pharmacists",icon:b.Z,description:"Manage pharmacists",roles:["admin","superadmin"]},{label:"Sellers",href:"/dashboard/sellers",icon:f,description:"Manage sellers",roles:["superadmin","pharmacist"]},{label:"Medicines",href:"/dashboard/medicines",icon:v.Z,description:"Medicine records",roles:["admin","superadmin","seller","pharmacist","doctor"]},{label:"Nutrition",href:"/dashboard/nutrition",icon:k.Z,description:"Nutrition guides",roles:["admin","superadmin","doctor"]},{label:"Reports",href:"/dashboard/reports",icon:g,description:"Submitted reports",roles:["admin","superadmin"]},{label:"SuperAdmin",href:"/dashboard/superadmin",icon:n.Z,description:"Supreme control",roles:["superadmin"]},{label:"Selling Issues",href:"/dashboard/selling-issues",icon:g,description:"Submit issues",roles:["seller"]},{label:"Profile Update",href:"/dashboard/doctor-profile",icon:j,description:"Update doctor profile",roles:["doctor"]},{label:"Profile Update",href:"/dashboard/pharmacist-profile",icon:j,description:"Update pharmacist profile",roles:["pharmacist"]},{label:"Profile Update",href:"/dashboard/seller-profile",icon:j,description:"Update seller profile",roles:["seller"]}];var Z=r(13604),M=r(74131);function N(){let e=(0,i.usePathname)(),{isCollapsed:a,toggleSidebar:r}=(0,Z.A)(),{user:l}=(0,M.a)(),m=l?.role||"user",x=w.filter(e=>!e.roles||0===e.roles.length||e.roles.includes(m));return t.jsx(d.E.aside,{animate:{width:a?96:300},transition:{duration:.38,ease:[.22,1,.36,1]},className:"sticky top-0 z-40 h-screen shrink-0 overflow-hidden border-r border-emerald-100/80 bg-gradient-to-b from-emerald-50 via-white to-pink-50 shadow-[0_10px_40px_rgba(16,185,129,0.10)] backdrop-blur-xl",children:(0,t.jsxs)("div",{className:"flex h-full flex-col",children:[(0,t.jsxs)("div",{className:"flex items-center justify-between px-4 py-5",children:[t.jsx(d.E.div,{animate:{opacity:a?0:1,x:a?-10:0},transition:{duration:.25},className:"pointer-events-none",children:!a&&(0,t.jsxs)("div",{className:"flex items-center gap-3",children:[t.jsx("div",{className:"flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-400 to-pink-300 text-white shadow-md",children:"superadmin"===m?t.jsx(o,{size:22}):t.jsx(n.Z,{size:22})}),(0,t.jsxs)("div",{children:[t.jsx("p",{className:"text-sm font-semibold text-emerald-800",children:{superadmin:"SuperAdmin Panel",admin:"Admin Dashboard",doctor:"Doctor Dashboard",pharmacist:"Pharmacist Dashboard",seller:"Seller Dashboard",user:"User Dashboard"}[m]||"Dashboard"}),t.jsx("p",{className:"text-xs capitalize text-slate-500",children:{superadmin:"Supreme Access Control",admin:"Administrative Access Control",doctor:"Doctor Access Control",pharmacist:"Pharmacist Access Control",seller:"Seller Access Control",user:"User Access Control"}[m]||"Access Control"})]})]})}),t.jsx(d.E.button,{whileHover:{scale:1.05},whileTap:{scale:.95},onClick:r,className:"flex h-11 w-11 items-center justify-center rounded-2xl border border-emerald-100 bg-white/80 text-emerald-700 shadow-sm transition hover:bg-emerald-50","aria-label":"Toggle dashboard sidebar",children:a?t.jsx(c.Z,{size:20}):t.jsx(h.Z,{size:20})})]}),t.jsx("div",{className:"px-3 pb-4",children:t.jsx("div",{className:"h-px w-full bg-gradient-to-r from-transparent via-emerald-200 to-transparent"})}),t.jsx("nav",{className:"flex-1 space-y-2 px-3 py-2",children:x.map((r,i)=>{let l=r.icon,o=e===r.href;return t.jsx(d.E.div,{initial:{opacity:0,x:-8},animate:{opacity:1,x:0},transition:{delay:.04*i,duration:.25},children:(0,t.jsxs)(s.default,{href:r.href,className:`group relative flex items-center gap-4 overflow-hidden rounded-2xl px-4 py-3.5 transition-all duration-300 ${o?"bg-gradient-to-r from-emerald-400 to-pink-300 text-white shadow-[0_10px_30px_rgba(16,185,129,0.22)]":"text-slate-700 hover:bg-white/85 hover:shadow-md"}`,children:[!o&&t.jsx("span",{className:"absolute inset-y-0 left-0 w-0 rounded-r-full bg-gradient-to-b from-emerald-300 to-pink-200 transition-all duration-300 group-hover:w-1.5"}),t.jsx(d.E.div,{whileHover:{rotate:o?0:[0,-6,6,0],scale:1.06},transition:{duration:.35},className:`relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl ${o?"bg-white/20 text-white":"bg-gradient-to-br from-emerald-100 to-pink-100 text-emerald-700"}`,children:t.jsx(l,{size:20})}),t.jsx(d.E.div,{animate:{opacity:a?0:1,x:a?-8:0},transition:{duration:.22},className:"min-w-0",children:!a&&(0,t.jsxs)(t.Fragment,{children:[t.jsx("p",{className:`truncate text-sm font-semibold ${o?"text-white":"text-slate-800"}`,children:r.label}),t.jsx("p",{className:`truncate text-xs ${o?"text-white/80":"text-slate-400"}`,children:r.description||"Manage section"})]})}),a&&t.jsx("span",{className:"pointer-events-none absolute left-[78px] top-1/2 z-50 -translate-y-1/2 whitespace-nowrap rounded-full border border-emerald-100 bg-white px-3 py-1 text-xs font-semibold text-emerald-700 opacity-0 shadow-lg transition-all duration-200 group-hover:left-[86px] group-hover:opacity-100",children:r.label})]})},r.href)})}),t.jsx("div",{className:"p-3",children:t.jsx("div",{className:"rounded-3xl border border-emerald-100 bg-white/70 p-3 shadow-sm",children:t.jsx(d.E.div,{animate:{opacity:a?0:1,y:a?8:0},transition:{duration:.22},children:a?t.jsx("div",{className:"flex justify-center",children:t.jsx("div",{className:"h-10 w-10 rounded-2xl bg-gradient-to-br from-emerald-200 to-pink-200"})}):(0,t.jsxs)("div",{className:"rounded-2xl bg-gradient-to-r from-emerald-100 via-white to-pink-100 p-4",children:[(0,t.jsxs)("div",{className:"mb-2 flex items-center gap-2 text-emerald-700",children:[t.jsx(p.Z,{size:16}),t.jsx("p",{className:"text-sm font-semibold",children:"Control Center"})]}),t.jsx("p",{className:"text-xs leading-6 text-slate-500",children:"Smooth, premium and role-aware dashboard navigation for DOCTORcheap."})]})})})})]})})}},58005:(e,a,r)=>{"use strict";r.d(a,{Z:()=>i}),r(17577);var t=r(35047),s=r(74131);function i(e){let{user:a,isReady:r}=(0,s.a)();return(0,t.useRouter)(),{user:a,isReady:r}}},81259:(e,a,r)=>{"use strict";r.r(a),r.d(a,{default:()=>h});var t=r(19510),s=r(68570);let i=(0,s.createProxy)(String.raw`D:\PROJ\DOCTORcheap\DOCTORcheap\client\src\components\shared\sidebar\DashboardSidebar.tsx`),{__esModule:d,$$typeof:l}=i;i.default;let o=(0,s.createProxy)(String.raw`D:\PROJ\DOCTORcheap\DOCTORcheap\client\src\components\shared\sidebar\DashboardSidebar.tsx#default`);var n=r(80385);function c({children:e}){return t.jsx("div",{className:"min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.10),transparent_22%),radial-gradient(circle_at_bottom_right,rgba(244,114,182,0.10),transparent_22%),linear-gradient(to_bottom_right,#ecfdf5,#ffffff,#fdf2f8)]",children:(0,t.jsxs)("div",{className:"flex",children:[t.jsx(o,{}),(0,t.jsxs)("div",{className:"flex min-h-screen flex-1 flex-col",children:[t.jsx(n.ZP,{}),t.jsx("main",{className:"flex-1 p-6 md:p-8",children:e})]})]})})}function h({children:e}){return t.jsx(c,{children:e})}}};

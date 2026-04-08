@@ -7,9 +7,10 @@ import { splitCsvToArray } from '@/lib/utils';
 export default function DiseaseForm({ initialData, onSubmit }: { initialData?: IDisease | null; onSubmit: (payload: IDisease) => Promise<void> }) {
   const [form, setForm] = useState({
     name: initialData?.name || '',
-    symptoms: initialData?.symptoms.join(', ') || '',
-    causes: initialData?.causes.join(', ') || '',
-    precautions: initialData?.precautions.join(', ') || '',
+    // Added ?. right before .join() on these three lines
+    symptoms: initialData?.symptoms?.join(', ') || '',
+    causes: initialData?.causes?.join(', ') || '',
+    precautions: initialData?.precautions?.join(', ') || '',
   });
 
   return (

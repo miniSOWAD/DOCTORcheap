@@ -78,7 +78,7 @@ export default function DashboardNutritionPage() {
 
     for (let i = 0; i < lines.length; i += 6) {
       nutritionItems.push({
-        title: `Diet for ${lines[i + 4]}`,
+        name: `Diet for ${lines[i + 4]}`,
         foodLines: [lines[i], lines[i + 1], lines[i + 2], lines[i + 3]],
         diseaseUsedFor: lines[i + 4],
         precautions: lines[i + 5],
@@ -245,7 +245,7 @@ export default function DashboardNutritionPage() {
               {items.map((item) => (
                 <tr key={item._id} className="border-t border-emerald-50">
                   <td className="px-6 py-4 font-medium text-slate-800">
-                    {item.title}
+                    {item.name}
                   </td>
                   <td className="px-6 py-4 text-slate-600">
                     {item.diseaseUsedFor || 'N/A'}
@@ -259,7 +259,7 @@ export default function DashboardNutritionPage() {
                         onClick={() => {
                           setEditingId(item._id || null);
                           setForm({
-                            title: item.title || '',
+                            title: item.name || '',
                             foodLine1: item.foodLines?.[0] || '',
                             foodLine2: item.foodLines?.[1] || '',
                             foodLine3: item.foodLines?.[2] || '',

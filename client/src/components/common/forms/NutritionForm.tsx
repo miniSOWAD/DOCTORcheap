@@ -6,10 +6,12 @@ import { splitCsvToArray } from '@/lib/utils';
 
 export default function NutritionForm({ initialData, onSubmit }: { initialData?: INutrition | null; onSubmit: (payload: INutrition) => Promise<void> }) {
   const [form, setForm] = useState({
-    title: initialData?.title || '',
-    recommendedFoods: initialData?.recommendedFoods.join(', ') || '',
-    avoidedFoods: initialData?.avoidedFoods.join(', ') || '',
-    notes: initialData?.notes || '',
+    // 1. Updated names to match INutrition interface
+    // 2. Added ?. right before .join()
+    name: initialData?.name || '',
+    ingredients: initialData?.ingredients?.join(', ') || '',
+    usedForDiseases: initialData?.usedForDiseases?.join(', ') || '',
+    benefits: initialData?.benefits || '',
   });
 
   return (
@@ -18,18 +20,38 @@ export default function NutritionForm({ initialData, onSubmit }: { initialData?:
         e.preventDefault();
         await onSubmit({
           _id: initialData?._id,
-          title: form.title,
-          recommendedFoods: splitCsvToArray(form.recommendedFoods),
-          avoidedFoods: splitCsvToArray(form.avoidedFoods),
-          notes: form.notes,
+          name: form.name,
+          ingredients: splitCsvToArray(form.ingredients),
+          usedForDiseases: splitCsvToArray(form.usedForDiseases),
+          benefits: form.benefits,
         });
       }}
       className="space-y-3 bg-white p-5 rounded-2xl border"
     >
-      <input className="w-full border rounded-xl px-4 py-3" placeholder="Title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
-      <textarea className="w-full border rounded-xl px-4 py-3" placeholder="Recommended foods comma separated" value={form.recommendedFoods} onChange={(e) => setForm({ ...form, recommendedFoods: e.target.value })} />
-      <textarea className="w-full border rounded-xl px-4 py-3" placeholder="Avoided foods comma separated" value={form.avoidedFoods} onChange={(e) => setForm({ ...form, avoidedFoods: e.target.value })} />
-      <textarea className="w-full border rounded-xl px-4 py-3" placeholder="Notes" value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} />
+      <input 
+        className="w-full border rounded-xl px-4 py-3" 
+        placeholder="Food Name" 
+        value={form.name} 
+        onChange={(e) => setForm({ ...form, name: e.target.value })} 
+      />
+      <textarea 
+        className="w-full border rounded-xl px-4 py-3" 
+        placeholder="Ingredients comma separated" 
+        value={form.ingredients} 
+        onChange={(e) => setForm({ ...form, ingredients: e.target.value })} 
+      />
+      <textarea 
+        className="w-full border rounded-xl px-4 py-3" 
+        placeholder="Used for diseases comma separated" 
+        value={form.usedForDiseases} 
+        onChange={(e) => setForm({ ...form, usedForDiseases: e.target.value })} 
+      />
+      <textarea 
+        className="w-full border rounded-xl px-4 py-3" 
+        placeholder="Benefits" 
+        value={form.benefits} 
+        onChange={(e) => setForm({ ...form, benefits: e.target.value })} 
+      />
       <button className="bg-purple-700 text-white px-5 py-3 rounded-xl">Save Nutrition</button>
     </form>
   );

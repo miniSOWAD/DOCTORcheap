@@ -105,7 +105,7 @@ export default function HomePage() {
     return nutrition
       .filter(
         (item) =>
-          item.title?.toLowerCase().includes(normalizedSearch) ||
+          item.name?.toLowerCase().includes(normalizedSearch) ||
           item.recommendedFoods?.some((f) => f.toLowerCase().includes(normalizedSearch)) ||
           item.avoidedFoods?.some((f) => f.toLowerCase().includes(normalizedSearch)),
       )
@@ -445,7 +445,7 @@ function SearchResultsSection({
               title="Nutrition"
               href="/food-nutrition"
               items={nutrition.map((item) => ({
-                title: item.title,
+                title: item.name,
                 subtitle:
                   item.recommendedFoods?.slice(0, 2).join(', ') || 'Recommended foods',
                 meta: item.avoidedFoods?.slice(0, 2).join(', ') || 'Avoided foods',

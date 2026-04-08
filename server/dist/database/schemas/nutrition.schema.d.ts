@@ -8,6 +8,13 @@ export declare class Nutrition {
     recommendedFoods?: string[];
     avoidedFoods?: string[];
     notes?: string;
+    name: string;
+    imageUrl: string;
+    ingredients: string[];
+    benefits: string;
+    origin: string;
+    popularIn: string;
+    usedForDiseases: string[];
 }
 export declare const NutritionSchema: import("mongoose").Schema<Nutrition, import("mongoose").Model<Nutrition, any, any, any, import("mongoose").Document<unknown, any, Nutrition, any, {}> & Nutrition & {
     _id: import("mongoose").Types.ObjectId;

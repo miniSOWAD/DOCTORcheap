@@ -8,7 +8,7 @@ export default function NutritionTable({ items, onEdit, onDelete }: { items: INu
         <tbody>
           {items.map((item) => (
             <tr key={item._id} className="border-t">
-              <td className="p-4">{item.title}</td>
+              <td className="p-4">{item.name}</td>
               <td className="p-4">{item.notes}</td>
               <td className="p-4 flex gap-2">
                 <button onClick={() => onEdit(item)} className="px-3 py-2 bg-black text-white rounded-lg">Edit</button>

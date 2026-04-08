@@ -42,6 +42,34 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], Nutrition.prototype, "notes", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: true }),
+    __metadata("design:type", String)
+], Nutrition.prototype, "name", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Nutrition.prototype, "imageUrl", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: [String], default: [] }),
+    __metadata("design:type", Array)
+], Nutrition.prototype, "ingredients", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Nutrition.prototype, "benefits", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Nutrition.prototype, "origin", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Nutrition.prototype, "popularIn", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: [String], default: [] }),
+    __metadata("design:type", Array)
+], Nutrition.prototype, "usedForDiseases", void 0);
 exports.Nutrition = Nutrition = __decorate([
     (0, mongoose_1.Schema)({ timestamps: true })
 ], Nutrition);
