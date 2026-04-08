@@ -3,7 +3,7 @@
 import { Zap, Activity } from 'lucide-react';
 import type { Metadata } from 'next';
 import DiseasePageClient from './DiseasePageClient';
-import { getDiseases } from '@/services/disease.service';
+import { getServerDiseases } from '@/services/disease.service';
 import type { IDisease } from '@/types/disease';
 
 export const metadata: Metadata = {
@@ -60,7 +60,7 @@ export const revalidate = 3600;
 export default async function DiseasePage() {
   // 1. SERVER-SIDE FETCH: Fetch the *next* batch of diseases (after the top 10) from the DB.
   // We specify pagination to avoid duplicating the top data.
-  const dbData = await getDiseases(1, 10); // Page 1 from DB (assuming the DB contains different data)
+  const dbData = await getServerDiseases(1, 10); // Page 1 from DB (assuming the DB contains different data)
 
   // 2. Combine the lists
   // Important: We prepend the Static 10 as requested.
