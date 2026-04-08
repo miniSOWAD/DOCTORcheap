@@ -31,7 +31,7 @@
       "static/chunks/8472-e0c7876d5c43b522.js",
       "static/chunks/app/shop/[sellerId]/page-e098ded0e32a9aec.js"
     ],
-    "/(auth)/login/page": [
+    "/(auth)/forgot-password/page": [
       "static/chunks/webpack-3a4a5073d046d8da.js",
       "static/chunks/fd9d1056-8d24ff03c1db56a5.js",
       "static/chunks/7023-a0e4556026ea9e0e.js",
@@ -39,8 +39,7 @@
       "static/chunks/8472-e0c7876d5c43b522.js",
       "static/chunks/3207-1ab9797c65f477f9.js",
       "static/chunks/7138-c3512a6f96946059.js",
-      "static/chunks/8173-9069eb17aba6d725.js",
-      "static/chunks/app/(auth)/login/page-c87908e27ad1dc94.js"
+      "static/chunks/app/(auth)/forgot-password/page-9a2306015eb9b8fd.js"
     ],
     "/(auth)/register/page": [
       "static/chunks/webpack-3a4a5073d046d8da.js",
@@ -53,7 +52,7 @@
       "static/chunks/8173-9069eb17aba6d725.js",
       "static/chunks/app/(auth)/register/page-2efa04ed5d940a86.js"
     ],
-    "/(auth)/forgot-password/page": [
+    "/(auth)/login/page": [
       "static/chunks/webpack-3a4a5073d046d8da.js",
       "static/chunks/fd9d1056-8d24ff03c1db56a5.js",
       "static/chunks/7023-a0e4556026ea9e0e.js",
@@ -61,7 +60,8 @@
       "static/chunks/8472-e0c7876d5c43b522.js",
       "static/chunks/3207-1ab9797c65f477f9.js",
       "static/chunks/7138-c3512a6f96946059.js",
-      "static/chunks/app/(auth)/forgot-password/page-9a2306015eb9b8fd.js"
+      "static/chunks/8173-9069eb17aba6d725.js",
+      "static/chunks/app/(auth)/login/page-c87908e27ad1dc94.js"
     ],
     "/search/page": [
       "static/chunks/webpack-3a4a5073d046d8da.js",
@@ -70,23 +70,6 @@
       "static/chunks/main-app-d972b8dc64b452ad.js",
       "static/chunks/8472-e0c7876d5c43b522.js",
       "static/chunks/app/search/page-179a297d8bd16dad.js"
-    ],
-    "/dashboard/admin/page": [
-      "static/chunks/webpack-3a4a5073d046d8da.js",
-      "static/chunks/fd9d1056-8d24ff03c1db56a5.js",
-      "static/chunks/7023-a0e4556026ea9e0e.js",
-      "static/chunks/main-app-d972b8dc64b452ad.js",
-      "static/chunks/8472-e0c7876d5c43b522.js",
-      "static/chunks/app/dashboard/admin/page-c0fa822e7560547c.js"
-    ],
-    "/dashboard/layout": [
-      "static/chunks/webpack-3a4a5073d046d8da.js",
-      "static/chunks/fd9d1056-8d24ff03c1db56a5.js",
-      "static/chunks/7023-a0e4556026ea9e0e.js",
-      "static/chunks/main-app-d972b8dc64b452ad.js",
-      "static/chunks/3207-1ab9797c65f477f9.js",
-      "static/chunks/7138-c3512a6f96946059.js",
-      "static/chunks/app/dashboard/layout-522265322e86f2e3.js"
     ],
     "/(commonLayout)/about-us/page": [
       "static/chunks/webpack-3a4a5073d046d8da.js",
@@ -107,13 +90,22 @@
       "static/chunks/8649-54908c17b397eb96.js",
       "static/chunks/app/(commonLayout)/layout-1ca220c6d1f051e7.js"
     ],
-    "/dashboard/doctor/page": [
+    "/dashboard/admin/page": [
       "static/chunks/webpack-3a4a5073d046d8da.js",
       "static/chunks/fd9d1056-8d24ff03c1db56a5.js",
       "static/chunks/7023-a0e4556026ea9e0e.js",
       "static/chunks/main-app-d972b8dc64b452ad.js",
       "static/chunks/8472-e0c7876d5c43b522.js",
-      "static/chunks/app/dashboard/doctor/page-fb9f29a634e286dc.js"
+      "static/chunks/app/dashboard/admin/page-154d431e93271ba8.js"
+    ],
+    "/dashboard/layout": [
+      "static/chunks/webpack-3a4a5073d046d8da.js",
+      "static/chunks/fd9d1056-8d24ff03c1db56a5.js",
+      "static/chunks/7023-a0e4556026ea9e0e.js",
+      "static/chunks/main-app-d972b8dc64b452ad.js",
+      "static/chunks/3207-1ab9797c65f477f9.js",
+      "static/chunks/7138-c3512a6f96946059.js",
+      "static/chunks/app/dashboard/layout-522265322e86f2e3.js"
     ],
     "/dashboard/doctor-profile/page": [
       "static/chunks/webpack-3a4a5073d046d8da.js",
@@ -130,6 +122,14 @@
       "static/chunks/main-app-d972b8dc64b452ad.js",
       "static/chunks/app/(commonLayout)/contact-us/page-a4936b1ed4bec3ec.js"
     ],
+    "/dashboard/diseases/page": [
+      "static/chunks/webpack-3a4a5073d046d8da.js",
+      "static/chunks/fd9d1056-8d24ff03c1db56a5.js",
+      "static/chunks/7023-a0e4556026ea9e0e.js",
+      "static/chunks/main-app-d972b8dc64b452ad.js",
+      "static/chunks/8472-e0c7876d5c43b522.js",
+      "static/chunks/app/dashboard/diseases/page-d2e918815acf9de8.js"
+    ],
     "/(commonLayout)/medicine/page": [
       "static/chunks/webpack-3a4a5073d046d8da.js",
       "static/chunks/fd9d1056-8d24ff03c1db56a5.js",
@@ -137,14 +137,6 @@
       "static/chunks/main-app-d972b8dc64b452ad.js",
       "static/chunks/8472-e0c7876d5c43b522.js",
       "static/chunks/app/(commonLayout)/medicine/page-8183609269cf83f0.js"
-    ],
-    "/dashboard/diseases/page": [
-      "static/chunks/webpack-3a4a5073d046d8da.js",
-      "static/chunks/fd9d1056-8d24ff03c1db56a5.js",
-      "static/chunks/7023-a0e4556026ea9e0e.js",
-      "static/chunks/main-app-d972b8dc64b452ad.js",
-      "static/chunks/8472-e0c7876d5c43b522.js",
-      "static/chunks/app/dashboard/diseases/page-48590a32aec3f3fd.js"
     ],
     "/(commonLayout)/page": [
       "static/chunks/webpack-3a4a5073d046d8da.js",
@@ -154,7 +146,23 @@
       "static/chunks/8472-e0c7876d5c43b522.js",
       "static/chunks/3207-1ab9797c65f477f9.js",
       "static/chunks/7138-c3512a6f96946059.js",
-      "static/chunks/app/(commonLayout)/page-a0d920026d04f7c7.js"
+      "static/chunks/app/(commonLayout)/page-a984ad6062724808.js"
+    ],
+    "/dashboard/doctor/page": [
+      "static/chunks/webpack-3a4a5073d046d8da.js",
+      "static/chunks/fd9d1056-8d24ff03c1db56a5.js",
+      "static/chunks/7023-a0e4556026ea9e0e.js",
+      "static/chunks/main-app-d972b8dc64b452ad.js",
+      "static/chunks/8472-e0c7876d5c43b522.js",
+      "static/chunks/app/dashboard/doctor/page-7fb010204b9a13b8.js"
+    ],
+    "/dashboard/doctors/page": [
+      "static/chunks/webpack-3a4a5073d046d8da.js",
+      "static/chunks/fd9d1056-8d24ff03c1db56a5.js",
+      "static/chunks/7023-a0e4556026ea9e0e.js",
+      "static/chunks/main-app-d972b8dc64b452ad.js",
+      "static/chunks/8472-e0c7876d5c43b522.js",
+      "static/chunks/app/dashboard/doctors/page-6b03fb964a997c1a.js"
     ],
     "/dashboard/nutrition/page": [
       "static/chunks/webpack-3a4a5073d046d8da.js",
@@ -186,23 +194,7 @@
       "static/chunks/7023-a0e4556026ea9e0e.js",
       "static/chunks/main-app-d972b8dc64b452ad.js",
       "static/chunks/8472-e0c7876d5c43b522.js",
-      "static/chunks/app/dashboard/page-d3a544d38f033f49.js"
-    ],
-    "/dashboard/doctors/page": [
-      "static/chunks/webpack-3a4a5073d046d8da.js",
-      "static/chunks/fd9d1056-8d24ff03c1db56a5.js",
-      "static/chunks/7023-a0e4556026ea9e0e.js",
-      "static/chunks/main-app-d972b8dc64b452ad.js",
-      "static/chunks/8472-e0c7876d5c43b522.js",
-      "static/chunks/app/dashboard/doctors/page-6b03fb964a997c1a.js"
-    ],
-    "/dashboard/seller/page": [
-      "static/chunks/webpack-3a4a5073d046d8da.js",
-      "static/chunks/fd9d1056-8d24ff03c1db56a5.js",
-      "static/chunks/7023-a0e4556026ea9e0e.js",
-      "static/chunks/main-app-d972b8dc64b452ad.js",
-      "static/chunks/8472-e0c7876d5c43b522.js",
-      "static/chunks/app/dashboard/seller/page-5bf9fb0c42a5fb42.js"
+      "static/chunks/app/dashboard/page-9c7a9c233dc2119b.js"
     ],
     "/dashboard/pharmacist/page": [
       "static/chunks/webpack-3a4a5073d046d8da.js",
@@ -210,15 +202,15 @@
       "static/chunks/7023-a0e4556026ea9e0e.js",
       "static/chunks/main-app-d972b8dc64b452ad.js",
       "static/chunks/8472-e0c7876d5c43b522.js",
-      "static/chunks/app/dashboard/pharmacist/page-a985eff2938b8ce8.js"
+      "static/chunks/app/dashboard/pharmacist/page-0210ccbb6e112f1c.js"
     ],
-    "/dashboard/seller-profile/page": [
+    "/dashboard/pharmacists/page": [
       "static/chunks/webpack-3a4a5073d046d8da.js",
       "static/chunks/fd9d1056-8d24ff03c1db56a5.js",
       "static/chunks/7023-a0e4556026ea9e0e.js",
       "static/chunks/main-app-d972b8dc64b452ad.js",
       "static/chunks/8472-e0c7876d5c43b522.js",
-      "static/chunks/app/dashboard/seller-profile/page-58d6f1a002b48473.js"
+      "static/chunks/app/dashboard/pharmacists/page-233a5f7bef46d256.js"
     ],
     "/dashboard/reports/page": [
       "static/chunks/webpack-3a4a5073d046d8da.js",
@@ -228,13 +220,39 @@
       "static/chunks/8472-e0c7876d5c43b522.js",
       "static/chunks/app/dashboard/reports/page-fb26beb09df08cd4.js"
     ],
-    "/dashboard/selling-issues/page": [
+    "/dashboard/seller-profile/page": [
       "static/chunks/webpack-3a4a5073d046d8da.js",
       "static/chunks/fd9d1056-8d24ff03c1db56a5.js",
       "static/chunks/7023-a0e4556026ea9e0e.js",
       "static/chunks/main-app-d972b8dc64b452ad.js",
       "static/chunks/8472-e0c7876d5c43b522.js",
-      "static/chunks/app/dashboard/selling-issues/page-584f10cf153150ef.js"
+      "static/chunks/app/dashboard/seller-profile/page-58d6f1a002b48473.js"
+    ],
+    "/dashboard/seller/page": [
+      "static/chunks/webpack-3a4a5073d046d8da.js",
+      "static/chunks/fd9d1056-8d24ff03c1db56a5.js",
+      "static/chunks/7023-a0e4556026ea9e0e.js",
+      "static/chunks/main-app-d972b8dc64b452ad.js",
+      "static/chunks/8472-e0c7876d5c43b522.js",
+      "static/chunks/app/dashboard/seller/page-5bf9fb0c42a5fb42.js"
+    ],
+    "/(commonLayout)/disease/page": [
+      "static/chunks/webpack-3a4a5073d046d8da.js",
+      "static/chunks/fd9d1056-8d24ff03c1db56a5.js",
+      "static/chunks/7023-a0e4556026ea9e0e.js",
+      "static/chunks/main-app-d972b8dc64b452ad.js",
+      "static/chunks/8472-e0c7876d5c43b522.js",
+      "static/chunks/3207-1ab9797c65f477f9.js",
+      "static/chunks/8173-9069eb17aba6d725.js",
+      "static/chunks/app/(commonLayout)/disease/page-b516691167d3053f.js"
+    ],
+    "/dashboard/sellers/page": [
+      "static/chunks/webpack-3a4a5073d046d8da.js",
+      "static/chunks/fd9d1056-8d24ff03c1db56a5.js",
+      "static/chunks/7023-a0e4556026ea9e0e.js",
+      "static/chunks/main-app-d972b8dc64b452ad.js",
+      "static/chunks/8472-e0c7876d5c43b522.js",
+      "static/chunks/app/dashboard/sellers/page-d09a43de9b00294c.js"
     ],
     "/(commonLayout)/doctor/page": [
       "static/chunks/webpack-3a4a5073d046d8da.js",
@@ -245,22 +263,6 @@
       "static/chunks/8173-9069eb17aba6d725.js",
       "static/chunks/app/(commonLayout)/doctor/page-45b463069b3cac5d.js"
     ],
-    "/(commonLayout)/food-nutrition/page": [
-      "static/chunks/webpack-3a4a5073d046d8da.js",
-      "static/chunks/fd9d1056-8d24ff03c1db56a5.js",
-      "static/chunks/7023-a0e4556026ea9e0e.js",
-      "static/chunks/main-app-d972b8dc64b452ad.js",
-      "static/chunks/3207-1ab9797c65f477f9.js",
-      "static/chunks/app/(commonLayout)/food-nutrition/page-96f1b9b2a3ca3d09.js"
-    ],
-    "/dashboard/pharmacists/page": [
-      "static/chunks/webpack-3a4a5073d046d8da.js",
-      "static/chunks/fd9d1056-8d24ff03c1db56a5.js",
-      "static/chunks/7023-a0e4556026ea9e0e.js",
-      "static/chunks/main-app-d972b8dc64b452ad.js",
-      "static/chunks/8472-e0c7876d5c43b522.js",
-      "static/chunks/app/dashboard/pharmacists/page-233a5f7bef46d256.js"
-    ],
     "/dashboard/superadmin/page": [
       "static/chunks/webpack-3a4a5073d046d8da.js",
       "static/chunks/fd9d1056-8d24ff03c1db56a5.js",
@@ -269,23 +271,21 @@
       "static/chunks/8472-e0c7876d5c43b522.js",
       "static/chunks/app/dashboard/superadmin/page-62d37b0d6294b801.js"
     ],
-    "/(commonLayout)/disease/page": [
+    "/(commonLayout)/food-nutrition/page": [
       "static/chunks/webpack-3a4a5073d046d8da.js",
       "static/chunks/fd9d1056-8d24ff03c1db56a5.js",
       "static/chunks/7023-a0e4556026ea9e0e.js",
       "static/chunks/main-app-d972b8dc64b452ad.js",
-      "static/chunks/8472-e0c7876d5c43b522.js",
       "static/chunks/3207-1ab9797c65f477f9.js",
-      "static/chunks/8173-9069eb17aba6d725.js",
-      "static/chunks/app/(commonLayout)/disease/page-cde5134e0fa313e4.js"
+      "static/chunks/app/(commonLayout)/food-nutrition/page-96f1b9b2a3ca3d09.js"
     ],
-    "/dashboard/sellers/page": [
+    "/dashboard/selling-issues/page": [
       "static/chunks/webpack-3a4a5073d046d8da.js",
       "static/chunks/fd9d1056-8d24ff03c1db56a5.js",
       "static/chunks/7023-a0e4556026ea9e0e.js",
       "static/chunks/main-app-d972b8dc64b452ad.js",
       "static/chunks/8472-e0c7876d5c43b522.js",
-      "static/chunks/app/dashboard/sellers/page-d09a43de9b00294c.js"
+      "static/chunks/app/dashboard/selling-issues/page-584f10cf153150ef.js"
     ],
     "/dashboard/user/page": [
       "static/chunks/webpack-3a4a5073d046d8da.js",
