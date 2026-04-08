@@ -42,27 +42,24 @@ export const bulkImportDiseases = async (payload: { diseases: any[] }) => {
   const { data } = await api.post('/diseases/bulk-import', payload);
   return data;
 };
-
-export const getServerDiseases = async (
-  page = 1,
-  limit = 10,
-  cacheConfig?: RequestInit
-): Promise<IDiseaseResponse> => {
+// --- NEW: SERVER-SIDE FETCH FUNCTION ---
+export const getServerDiseases = async (page = 1, limit = 10): Promise<IDiseaseResponse> => {
   try {
-    const finalCacheConfig = cacheConfig || { next: { tags: [DISEASE_TAGS.all], revalidate: 3600 } };
-
-    const response = await fetch(
+    // 1. Using native fetch for Next.js ISR caching (revalidates every 1 hour)
+    const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/diseases?page=${page}&limit=${limit}`,
-      finalCacheConfig
+      { next: { revalidate: 3600 } }
     );
 
-    if (!response.ok) {
-      throw new Error('Failed to fetch diseases from server');
+    if (!res.ok) {
+      console.warn('Backend reachable but returned error:', res.status);
+      return { success: false, count: 0, total: 0, data: [] };
     }
 
-    return await response.json();
+    return await res.json();
   } catch (error) {
-    console.error('Error in server disease service:', error);
+    // 2. Quietly catching the Netlify ECONNREFUSED error so the build completes!
+    console.warn('Server Fetch Error on Disease Page (Backend likely offline during build):', (error as Error).message);
     return { success: false, count: 0, total: 0, data: [] };
   }
 };
