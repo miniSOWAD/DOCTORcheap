@@ -28,18 +28,22 @@ export const bulkImportNutrition = async (payload: { nutrition: any[] }) => {
 
 export const getServerNutrition = async (): Promise<INutrition[]> => {
   try {
+    // 1. Removed 'cache: no-store'
+    // 2. Added ISR: Rebuilds data every 60 seconds without crashing the initial Netlify build
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000'}/nutrition`, {
-      cache: 'no-store',
+      next: { revalidate: 60 },
     });
 
     if (!res.ok) {
-      throw new Error('Failed to fetch nutrition from server');
+      console.warn('Backend reachable but returned error:', res.status);
+      return [];
     }
 
     const data = await res.json();
     return Array.isArray(data) ? data : (data.data || []);
   } catch (error) {
-    console.error('Server Fetch Error:', error);
+    // 3. Quietly catching the Netlify ECONNREFUSED error so the build successfully completes!
+    console.warn('Server Fetch Error (Backend likely offline during build):', (error as Error).message);
     return [];
   }
 };
