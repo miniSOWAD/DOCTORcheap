@@ -12,6 +12,7 @@ import { SearchModule } from './modules/search/search.module';
 import { UploadsModule } from './modules/uploads/uploads.module';
 import { DatabaseModule } from './database/database.module';
 import { SuperAdminModule } from './modules/superadmin/superadmin.module';
+import { ContactModule } from './modules/contact/contact.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { SuperAdminModule } from './modules/superadmin/superadmin.module';
     SearchModule,
     UploadsModule,
     SuperAdminModule,
+    ContactModule,
   ],
 })
 export class AppModule {}
